@@ -1,7 +1,10 @@
 # NeoCore Platform Setup Guide
 
 ## Project Overview
-NeoCore is a cyberpunk-themed Supabase alternative with PostgreSQL backend, AI-powered development tools, and stunning visual effects.
+NeoCore is a cyberpunk-themed Supabase alternative by StackStudio with PostgreSQL backend, AI-powered development tools, and stunning visual effects.
+
+## Enterprise GitHub Integration
+This project is managed under the **stackstudio** organization on GitHub Enterprise.
 
 ## Team Workspace Setup Instructions
 

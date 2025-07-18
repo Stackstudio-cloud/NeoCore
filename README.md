@@ -1,6 +1,6 @@
 # NeoCore Platform
 
-A cyberpunk-themed backend development platform providing comprehensive infrastructure services including database management, GraphQL APIs, authentication, storage, serverless functions, and AI capabilities.
+A cyberpunk-themed backend development platform by StackStudio providing comprehensive infrastructure services including database management, GraphQL APIs, authentication, storage, serverless functions, and AI capabilities.
 
 ## ✨ Features
 
