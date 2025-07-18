@@ -14,7 +14,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     console.log('Client connected to WebSocket');
     
     // Send initial connection message
-    ws.send(JSON.stringify({ type: 'connected', message: 'SmartDB WebSocket connected' }));
+    ws.send(JSON.stringify({ type: 'connected', message: 'NeoCore WebSocket connected' }));
     
     // Send periodic metrics updates
     const metricsInterval = setInterval(() => {

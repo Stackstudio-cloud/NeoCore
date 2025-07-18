@@ -90,13 +90,13 @@ export default function GraphQLPage() {
             <div>
               <p className="text-sm text-muted-foreground mb-1">GraphQL Endpoint</p>
               <code className="block p-2 bg-slate-900 rounded text-sm">
-                https://api.smartdb.io/v1/graphql
+                https://api.neocore.io/v1/graphql
               </code>
             </div>
             <div>
               <p className="text-sm text-muted-foreground mb-1">WebSocket</p>
               <code className="block p-2 bg-slate-900 rounded text-sm">
-                wss://api.smartdb.io/v1/graphql
+                wss://api.neocore.io/v1/graphql
               </code>
             </div>
           </div>

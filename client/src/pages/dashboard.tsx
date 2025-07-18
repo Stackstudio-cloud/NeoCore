@@ -19,7 +19,7 @@ export default function Dashboard() {
           The Future of Backend Development
         </h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-          SmartDB provides a complete, fully managed infrastructure stack with PostgreSQL, GraphQL, Auth, and Storage
+          NeoCore provides a complete, fully managed infrastructure stack with PostgreSQL, GraphQL, Auth, and Storage
         </p>
         
         {/* Quick Stats Carousel */}
@@ -34,16 +34,16 @@ export default function Dashboard() {
       {/* Extended Services Section */}
       <section className="mb-12">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4 text-blue-400">SmartDB Extended Services</h2>
+          <h2 className="text-3xl font-bold mb-4 text-blue-400">NeoCore Extended Services</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Enhance your backend with additional services for custom deployment, serverless functions, and AI capabilities
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* SmartDB Run */}
+          {/* NeoCore Run */}
           <NeonCard
-            title="SmartDB Run"
+            title="NeoCore Run"
             description="Custom Services"
             glowColor="cyan"
           >
@@ -65,9 +65,9 @@ export default function Dashboard() {
             </ul>
           </NeonCard>
 
-          {/* SmartDB Functions */}
+          {/* NeoCore Functions */}
           <NeonCard
-            title="SmartDB Functions"
+            title="NeoCore Functions"
             description="Serverless"
             glowColor="green"
           >
@@ -89,9 +89,9 @@ export default function Dashboard() {
             </ul>
           </NeonCard>
 
-          {/* SmartDB AI */}
+          {/* NeoCore AI */}
           <NeonCard
-            title="SmartDB AI"
+            title="NeoCore AI"
             description="AI Integration"
             glowColor="purple"
           >
@@ -125,7 +125,7 @@ export default function Dashboard() {
             Ready to Build the Future?
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of developers using SmartDB to build scalable, secure applications with cutting-edge technology.
+            Join thousands of developers using NeoCore to build scalable, secure applications with cutting-edge technology.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700">

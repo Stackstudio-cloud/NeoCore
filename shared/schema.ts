@@ -40,7 +40,7 @@ export const authProviders = pgTable("auth_providers", {
   config: jsonb("config").default({}),
 });
 
-export const storagebuckets = pgTable("storage_buckets", {
+export const storageBuckets = pgTable("storage_buckets", {
   id: serial("id").primaryKey(),
   projectId: integer("project_id").notNull(),
   name: text("name").notNull(),
@@ -96,7 +96,7 @@ export const insertAuthProviderSchema = createInsertSchema(authProviders).omit({
   id: true,
 });
 
-export const insertStorageBucketSchema = createInsertSchema(storagebuckets).omit({
+export const insertStorageBucketSchema = createInsertSchema(storageBuckets).omit({
   id: true,
 });
 
@@ -121,7 +121,7 @@ export type ApiEndpoint = typeof apiEndpoints.$inferSelect;
 export type InsertApiEndpoint = z.infer<typeof insertApiEndpointSchema>;
 export type AuthProvider = typeof authProviders.$inferSelect;
 export type InsertAuthProvider = z.infer<typeof insertAuthProviderSchema>;
-export type StorageBucket = typeof storageeBuckets.$inferSelect;
+export type StorageBucket = typeof storageBuckets.$inferSelect;
 export type InsertStorageBucket = z.infer<typeof insertStorageBucketSchema>;
 export type Function = typeof functions.$inferSelect;
 export type InsertFunction = z.infer<typeof insertFunctionSchema>;

@@ -10,7 +10,7 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             <div className="text-2xl font-bold text-blue-400 animate-pulse-neon flex items-center">
               <Database className="w-8 h-8 mr-2" />
-              SmartDB
+              NeoCore
             </div>
             <div className="hidden md:flex items-center space-x-3 text-sm text-gray-400">
               <span>v2.0.1</span>

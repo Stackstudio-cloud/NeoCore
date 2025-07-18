@@ -66,7 +66,7 @@ LIMIT 10;`;
   const sampleAssistantConfig = `{
   "name": "Customer Support AI",
   "model": "gpt-4",
-  "system_prompt": "You are a helpful customer support assistant for SmartDB. You have access to user data and can help with account issues, billing questions, and technical support.",
+  "system_prompt": "You are a helpful customer support assistant for NeoCore. You have access to user data and can help with account issues, billing questions, and technical support.",
   "tools": [
     {
       "type": "function",
@@ -119,7 +119,7 @@ LIMIT 10;`;
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            SmartDB AI
+            NeoCore AI
           </h1>
           <p className="text-muted-foreground mt-2">
             AI-powered embeddings, assistants, and natural language queries

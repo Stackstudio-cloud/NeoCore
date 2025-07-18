@@ -58,7 +58,7 @@ export default async function handler(req, res) {
     if (method === 'GET') {
       // Handle GET request
       res.status(200).json({ 
-        message: 'Hello from SmartDB Functions!',
+        message: 'Hello from NeoCore Functions!',
         timestamp: new Date().toISOString()
       });
     } else if (method === 'POST') {
@@ -98,7 +98,7 @@ async function processData(name) {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">
-            SmartDB Functions
+            NeoCore Functions
           </h1>
           <p className="text-muted-foreground mt-2">
             Deploy and manage serverless JavaScript/TypeScript functions

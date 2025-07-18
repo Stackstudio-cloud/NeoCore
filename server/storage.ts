@@ -1,5 +1,5 @@
 import {
-  projects, databases, apiEndpoints, authProviders, storageeBuckets, functions, aiAssistants, metrics,
+  projects, databases, apiEndpoints, authProviders, storageBuckets, functions, aiAssistants, metrics,
   type Project, type InsertProject,
   type Database, type InsertDatabase,
   type ApiEndpoint, type InsertApiEndpoint,
@@ -73,8 +73,8 @@ export class MemStorage implements IStorage {
     // Create default project
     const defaultProject: Project = {
       id: 1,
-      name: "SmartDB Demo",
-      description: "Demo project showcasing SmartDB capabilities",
+      name: "NeoCore Demo",
+      description: "Demo project showcasing NeoCore capabilities",
       status: "active",
       region: "us-east-1",
       createdAt: new Date(),
@@ -87,7 +87,7 @@ export class MemStorage implements IStorage {
       id: 1,
       projectId: 1,
       name: "main-db",
-      connectionString: "postgresql://smartdb:***@db.smartdb.io:5432/main",
+      connectionString: "postgresql://neocore:***@db.neocore.io:5432/main",
       status: "running",
       version: "15.0",
       extensions: ["pgvector", "postgis"],

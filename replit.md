@@ -1,8 +1,8 @@
-# SmartDB Platform
+# NeoCore Platform
 
 ## Overview
 
-SmartDB is a modern backend development platform that provides a complete, fully managed infrastructure stack. The application is built as a full-stack web application with a React frontend and Express.js backend, showcasing the capabilities of the SmartDB platform through an interactive dashboard interface.
+NeoCore is a modern backend development platform that provides a complete, fully managed infrastructure stack. The application is built as a full-stack web application with a React frontend and Express.js backend, showcasing the capabilities of the NeoCore platform through an interactive cyberpunk-themed dashboard interface.
 
 ## User Preferences
 

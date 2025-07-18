@@ -46,7 +46,7 @@ export default function LiveDashboard() {
           <div className="flex items-center text-gray-400 text-sm">
             <StatusIndicator 
               status={isConnected ? "online" : "offline"} 
-              label={`Connected to ${isConnected ? 'smartdb-prod' : 'disconnected'}`}
+              label={`Connected to ${isConnected ? 'neocore-prod' : 'disconnected'}`}
             />
           </div>
         </div>
