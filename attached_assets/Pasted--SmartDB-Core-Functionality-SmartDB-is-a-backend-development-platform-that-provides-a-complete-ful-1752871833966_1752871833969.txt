@@ -1,0 +1,79 @@
+.
+SmartDB Core Functionality
+SmartDB is a backend development platform that provides a complete, fully managed infrastructure stack. The core functionality consists of four main services that form the SmartDB Stack:
+1. Database
+PostgreSQL instance: Each SmartDB project gets its own dedicated PostgreSQL database
+Dashboard management: Create tables, relationships, manage data, or run arbitrary SQL through a simple UI
+Extensions support: Includes extensions like pgvector for full-text search and PostGIS for geographic objects
+Additional features: Automated backups, realtime APIs, and configurable compute resources
+2. GraphQL API
+Instant GraphQL API: Automatically generated from your database schema
+Comprehensive permissions system: Powered by Hasura for fine-grained access control
+Real-time capabilities: Built-in subscriptions and live queries
+3. Authentication (Auth)
+Multiple sign-in methods: Email/password, OTP, magic links, SMS, WebAuthn security keys
+OAuth providers: Apple, Discord, Facebook, GitHub, Google, LinkedIn, Spotify, Twitch, WorkOS
+Advanced features: Multi-factor authentication, elevated permissions, ID tokens
+Seamless integration: Works directly with the GraphQL API and permission system
+4. Storage
+File management: Upload, download, and delete files of any type
+S3 + CDN: Files stored in S3 and served via CDN for optimal performance
+GraphQL integration: File metadata stored in your database and accessible via GraphQL
+Image transformation: On-the-fly image resizing and optimization
+Flexible permissions: Bucket-based organization with granular access controls
+SmartDB Extended Functionality
+The platform offers SmartDB Extend - additional services that enhance and customize your backend:
+1. SmartDB Run
+Custom services deployment: Deploy any custom or third-party OSS solutions alongside your project
+Use cases: Redis, memcache, Datadog agents, MySQL, MongoDB, or any containerized application
+Advantages: Minimal latency, improved reliability, no egress costs, integrated operations
+Advanced features: Configuration overlays, networking, health checks, resource management
+2. SmartDB Functions
+Serverless functions: JavaScript/TypeScript functions for backend logic and API integrations
+Easy deployment: Simply place .js or .ts files in the ./functions folder
+HTTP endpoints: Automatically generated based on file structure
+Environment variables: Full access to project environment variables
+Execution limits: Vary by tier (10 seconds to 10 minutes)
+3. SmartDB AI
+AI capabilities integration: Auto-embeddings and AI assistants
+Seamless integration: Works with your existing SmartDB stack
+Platform Features
+SmartDB also provides comprehensive platform capabilities:
+CLI and Development
+Local development: Run the complete SmartDB stack locally with Docker
+Cloud development: Develop against cloud infrastructure while maintaining local tools
+Configuration as code: Version-controlled project configuration
+Multiple workflows: Support for both local and cloud development approaches
+Cloud Platform
+Fully managed infrastructure: Automatic provisioning, scaling, and maintenance
+Global deployment: Multiple regions available worldwide
+Comprehensive monitoring: Built-in metrics, logs, and alerts
+Security-first: Enterprise-grade security with TLS encryption and granular permissions
+Deployment Options
+Environment variables: Secure variable management
+Custom domains: Connect your own domain names
+Compute resources: Flexible scaling options
+Service replicas: High availability with multiple instances
+Rate limiting: Protection against abuse
+Secrets management: Secure storage of sensitive information
+
+
+Features
+Auto-Embeddings
+Generate embeddings for your data automatically as it is inserted or modified
+Provide a GraphQL query for similarity searches to compare objects in your database
+Provide a GraphQL query to search objects using natural language
+Embeddings sources supported:
+Gemini and Google APIs
+AI Assistants
+Create AI assistants so your users can interact with your data using AI.
+Different AI assistants can have different views of your data
+Extend with custom data via webhooks
+Automate workflows by exposing GraphQL queries or mutations or custom webhooks to the AI assistant
+GraphQL API to interact with the assistants.
+Permissions fully integrated with hasura and hasura-auth; control who and who can not use which assistant via permissions.
+Access to the underlying data for the assistant is limited to what the user can see.
+Developer Assistant
+Custom AI assistant with access to your project’s information (i.e. database/graphql schema) Allow the developers in your team to leverage AI to develop faster and better
+Embeddings are automatically generated based on defined rules and a new GraphQL query to search objects using natural language is automatically added to the schema:
+
