@@ -118,8 +118,11 @@ export class MemStorage implements IStorage {
   async createProject(project: InsertProject): Promise<Project> {
     const id = this.currentId++;
     const newProject: Project = {
-      ...project,
       id,
+      name: project.name,
+      description: project.description || null,
+      status: project.status || "active",
+      region: project.region || "us-east-1",
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -151,7 +154,16 @@ export class MemStorage implements IStorage {
 
   async createDatabase(database: InsertDatabase): Promise<Database> {
     const id = this.currentId++;
-    const newDatabase: Database = { ...database, id };
+    const newDatabase: Database = {
+      id,
+      projectId: database.projectId,
+      name: database.name,
+      connectionString: database.connectionString,
+      status: database.status || "running",
+      version: database.version || "15.0",
+      extensions: database.extensions || [],
+      metrics: database.metrics || {},
+    };
     this.databases.set(id, newDatabase);
     return newDatabase;
   }
@@ -172,7 +184,14 @@ export class MemStorage implements IStorage {
 
   async createApiEndpoint(endpoint: InsertApiEndpoint): Promise<ApiEndpoint> {
     const id = this.currentId++;
-    const newEndpoint: ApiEndpoint = { ...endpoint, id };
+    const newEndpoint: ApiEndpoint = {
+      id,
+      projectId: endpoint.projectId,
+      type: endpoint.type,
+      url: endpoint.url,
+      status: endpoint.status || "active",
+      config: endpoint.config || {},
+    };
     this.apiEndpoints.set(id, newEndpoint);
     return newEndpoint;
   }
@@ -207,7 +226,14 @@ export class MemStorage implements IStorage {
 
   async createStorageBucket(bucket: InsertStorageBucket): Promise<StorageBucket> {
     const id = this.currentId++;
-    const newBucket: StorageBucket = { ...bucket, id };
+    const newBucket: StorageBucket = {
+      id,
+      projectId: bucket.projectId,
+      name: bucket.name,
+      public: bucket.public || false,
+      fileCount: bucket.fileCount || 0,
+      totalSize: bucket.totalSize || 0,
+    };
     this.storageBuckets.set(id, newBucket);
     return newBucket;
   }
@@ -228,7 +254,15 @@ export class MemStorage implements IStorage {
 
   async createFunction(func: InsertFunction): Promise<Function> {
     const id = this.currentId++;
-    const newFunction: Function = { ...func, id };
+    const newFunction: Function = {
+      id,
+      projectId: func.projectId,
+      name: func.name,
+      runtime: func.runtime || "nodejs18",
+      status: func.status || "deployed",
+      lastInvoked: func.lastInvoked || null,
+      invocations: func.invocations || 0,
+    };
     this.functions.set(id, newFunction);
     return newFunction;
   }
@@ -249,7 +283,15 @@ export class MemStorage implements IStorage {
 
   async createAiAssistant(assistant: InsertAiAssistant): Promise<AiAssistant> {
     const id = this.currentId++;
-    const newAssistant: AiAssistant = { ...assistant, id };
+    const newAssistant: AiAssistant = {
+      id,
+      projectId: assistant.projectId,
+      name: assistant.name,
+      model: assistant.model || "gpt-4",
+      description: assistant.description || null,
+      config: assistant.config || {},
+      active: assistant.active || true,
+    };
     this.aiAssistants.set(id, newAssistant);
     return newAssistant;
   }

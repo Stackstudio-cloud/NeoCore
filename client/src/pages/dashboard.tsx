@@ -4,7 +4,9 @@ import ServiceGrid from "@/components/dashboard/service-grid";
 import LiveDashboard from "@/components/dashboard/live-dashboard";
 import NeonCard from "@/components/ui/neon-card";
 import { Button } from "@/components/ui/button";
-import { Rocket, FileText } from "lucide-react";
+import { Rocket, FileText, Star } from "lucide-react";
+import MatrixRain from "@/components/effects/matrix-rain";
+import ParticleSystem from "@/components/effects/particle-system";
 
 export default function Dashboard() {
   const { data: projects } = useQuery({
@@ -12,9 +14,13 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="animate-slide-left">
+    <div className="animate-slide-left relative overflow-hidden">
+      {/* Background Effects */}
+      <MatrixRain className="opacity-20" />
+      <ParticleSystem className="opacity-40" particleCount={30} />
+      
       {/* Hero Section */}
-      <section className="mb-12 text-center">
+      <section className="mb-12 text-center relative z-10">
         <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-green-400 to-purple-500 bg-clip-text text-transparent">
           The Future of Backend Development
         </h1>
@@ -27,12 +33,12 @@ export default function Dashboard() {
       </section>
 
       {/* Core Services Grid */}
-      <section className="mb-12">
+      <section className="mb-12 relative z-10">
         <ServiceGrid />
       </section>
 
       {/* Extended Services Section */}
-      <section className="mb-12">
+      <section className="mb-12 relative z-10">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-4 text-blue-400">NeoCore Extended Services</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -116,10 +122,12 @@ export default function Dashboard() {
       </section>
 
       {/* Interactive Dashboard Section */}
-      <LiveDashboard />
+      <div className="relative z-10">
+        <LiveDashboard />
+      </div>
 
       {/* CTA Section */}
-      <section className="text-center py-16">
+      <section className="text-center py-16 relative z-10">
         <NeonCard className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-green-400 to-purple-500 bg-clip-text text-transparent">
             Ready to Build the Future?

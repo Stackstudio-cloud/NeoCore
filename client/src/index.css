@@ -171,3 +171,132 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--neon-green);
 }
+
+/* Enhanced cyberpunk animations */
+@keyframes dataFlow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+}
+
+@keyframes glitchText {
+  0% {
+    text-shadow: 
+      0.05em 0 0 #00ffff, 
+      -0.05em -0.025em 0 #ff00ff, 
+      0.025em 0.05em 0 #ffff00;
+  }
+  15% {
+    text-shadow: 
+      0.05em 0 0 #00ffff, 
+      -0.05em -0.025em 0 #ff00ff, 
+      0.025em 0.05em 0 #ffff00;
+  }
+  16% {
+    text-shadow: 
+      -0.05em -0.025em 0 #00ffff, 
+      0.025em 0.025em 0 #ff00ff, 
+      -0.05em -0.05em 0 #ffff00;
+  }
+  49% {
+    text-shadow: 
+      -0.05em -0.025em 0 #00ffff, 
+      0.025em 0.025em 0 #ff00ff, 
+      -0.05em -0.05em 0 #ffff00;
+  }
+  50% {
+    text-shadow: 
+      0.025em 0.05em 0 #00ffff, 
+      0.05em 0 0 #ff00ff, 
+      0 -0.05em 0 #ffff00;
+  }
+  99% {
+    text-shadow: 
+      0.025em 0.05em 0 #00ffff, 
+      0.05em 0 0 #ff00ff, 
+      0 -0.05em 0 #ffff00;
+  }
+  100% {
+    text-shadow: 
+      0.05em 0 0 #00ffff, 
+      -0.05em -0.025em 0 #ff00ff, 
+      0.025em 0.05em 0 #ffff00;
+  }
+}
+
+/* Cyberpunk utility classes */
+.cyber-glow {
+  animation: pulse-neon 2s infinite alternate;
+}
+
+.glitch-text {
+  animation: glitchText 2s infinite linear alternate-reverse;
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Enhanced glass morphism */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Neon borders */
+.neon-border-blue {
+  border: 2px solid #0099ff;
+  box-shadow: 
+    0 0 10px #0099ff,
+    inset 0 0 10px rgba(0, 153, 255, 0.1);
+}
+
+.neon-border-green {
+  border: 2px solid #00ff41;
+  box-shadow: 
+    0 0 10px #00ff41,
+    inset 0 0 10px rgba(0, 255, 65, 0.1);
+}
+
+.neon-border-purple {
+  border: 2px solid #9f00ff;
+  box-shadow: 
+    0 0 10px #9f00ff,
+    inset 0 0 10px rgba(159, 0, 255, 0.1);
+}
+
+/* Animation delays for staggered effects */
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}

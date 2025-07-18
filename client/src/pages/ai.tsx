@@ -13,6 +13,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Brain, MessageSquare, Plus, Settings, Zap, Search, Bot, Sparkles } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import DevelopmentAssistant from "@/components/ai/development-assistant";
+import MatrixRain from "@/components/effects/matrix-rain";
 
 export default function AIPage() {
   const { toast } = useToast();
@@ -114,9 +116,16 @@ LIMIT 10;`;
   const activeAssistants = assistants?.filter(assistant => assistant.active).length || 0;
 
   return (
-    <div className="animate-slide-left">
+    <div className="animate-slide-left relative">
+      <MatrixRain className="opacity-10" />
+      
+      {/* AI Development Assistant */}
+      <div className="mb-8 relative z-10">
+        <DevelopmentAssistant />
+      </div>
+      
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-8 relative z-10">
         <div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             NeoCore AI

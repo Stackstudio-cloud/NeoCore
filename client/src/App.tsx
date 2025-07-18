@@ -14,6 +14,7 @@ import Auth from "@/pages/auth";
 import Storage from "@/pages/storage";
 import Functions from "@/pages/functions";
 import AI from "@/pages/ai";
+import Playground from "@/pages/playground";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -32,6 +33,7 @@ function Router() {
             <Route path="/storage" component={Storage} />
             <Route path="/functions" component={Functions} />
             <Route path="/ai" component={AI} />
+            <Route path="/playground" component={Playground} />
             <Route component={NotFound} />
           </Switch>
         </main>

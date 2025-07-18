@@ -7,6 +7,7 @@ import {
   Zap, 
   Brain,
   Home,
+  Terminal,
   ChevronRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -19,6 +20,7 @@ const navigation = [
   { name: "Storage", href: "/storage", icon: Cloud },
   { name: "Functions", href: "/functions", icon: Zap },
   { name: "AI", href: "/ai", icon: Brain },
+  { name: "Playground", href: "/playground", icon: Terminal },
 ];
 
 export default function Sidebar() {
