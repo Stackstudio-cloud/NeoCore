@@ -9,6 +9,8 @@ import {
   type AiAssistant, type InsertAiAssistant,
   type Metric, type InsertMetric
 } from "@shared/schema";
+import { db } from "./db";
+import { eq, and } from "drizzle-orm";
 
 export interface IStorage {
   // Projects
@@ -319,4 +321,137 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export class DatabaseStorage implements IStorage {
+  // Projects
+  async getProjects(): Promise<Project[]> {
+    return await db.select().from(projects);
+  }
+
+  async getProject(id: number): Promise<Project | undefined> {
+    const [project] = await db.select().from(projects).where(eq(projects.id, id));
+    return project || undefined;
+  }
+
+  async createProject(project: InsertProject): Promise<Project> {
+    const [newProject] = await db.insert(projects).values(project).returning();
+    return newProject;
+  }
+
+  async updateProject(id: number, updates: Partial<Project>): Promise<Project | undefined> {
+    const [updatedProject] = await db.update(projects).set(updates).where(eq(projects.id, id)).returning();
+    return updatedProject || undefined;
+  }
+
+  async deleteProject(id: number): Promise<boolean> {
+    const result = await db.delete(projects).where(eq(projects.id, id));
+    return (result.rowCount || 0) > 0;
+  }
+
+  // Databases
+  async getDatabases(projectId: number): Promise<Database[]> {
+    return await db.select().from(databases).where(eq(databases.projectId, projectId));
+  }
+
+  async getDatabase(id: number): Promise<Database | undefined> {
+    const [database] = await db.select().from(databases).where(eq(databases.id, id));
+    return database || undefined;
+  }
+
+  async createDatabase(database: InsertDatabase): Promise<Database> {
+    const [newDatabase] = await db.insert(databases).values(database).returning();
+    return newDatabase;
+  }
+
+  async updateDatabase(id: number, updates: Partial<Database>): Promise<Database | undefined> {
+    const [updatedDatabase] = await db.update(databases).set(updates).where(eq(databases.id, id)).returning();
+    return updatedDatabase || undefined;
+  }
+
+  // API Endpoints
+  async getApiEndpoints(projectId: number): Promise<ApiEndpoint[]> {
+    return await db.select().from(apiEndpoints).where(eq(apiEndpoints.projectId, projectId));
+  }
+
+  async createApiEndpoint(endpoint: InsertApiEndpoint): Promise<ApiEndpoint> {
+    const [newEndpoint] = await db.insert(apiEndpoints).values(endpoint).returning();
+    return newEndpoint;
+  }
+
+  async updateApiEndpoint(id: number, updates: Partial<ApiEndpoint>): Promise<ApiEndpoint | undefined> {
+    const [updatedEndpoint] = await db.update(apiEndpoints).set(updates).where(eq(apiEndpoints.id, id)).returning();
+    return updatedEndpoint || undefined;
+  }
+
+  // Auth Providers
+  async getAuthProviders(projectId: number): Promise<AuthProvider[]> {
+    return await db.select().from(authProviders).where(eq(authProviders.projectId, projectId));
+  }
+
+  async updateAuthProvider(id: number, updates: Partial<AuthProvider>): Promise<AuthProvider | undefined> {
+    const [updatedProvider] = await db.update(authProviders).set(updates).where(eq(authProviders.id, id)).returning();
+    return updatedProvider || undefined;
+  }
+
+  // Storage Buckets
+  async getStorageBuckets(projectId: number): Promise<StorageBucket[]> {
+    return await db.select().from(storageBuckets).where(eq(storageBuckets.projectId, projectId));
+  }
+
+  async createStorageBucket(bucket: InsertStorageBucket): Promise<StorageBucket> {
+    const [newBucket] = await db.insert(storageBuckets).values(bucket).returning();
+    return newBucket;
+  }
+
+  async updateStorageBucket(id: number, updates: Partial<StorageBucket>): Promise<StorageBucket | undefined> {
+    const [updatedBucket] = await db.update(storageBuckets).set(updates).where(eq(storageBuckets.id, id)).returning();
+    return updatedBucket || undefined;
+  }
+
+  // Functions
+  async getFunctions(projectId: number): Promise<Function[]> {
+    return await db.select().from(functions).where(eq(functions.projectId, projectId));
+  }
+
+  async createFunction(func: InsertFunction): Promise<Function> {
+    const [newFunction] = await db.insert(functions).values(func).returning();
+    return newFunction;
+  }
+
+  async updateFunction(id: number, updates: Partial<Function>): Promise<Function | undefined> {
+    const [updatedFunction] = await db.update(functions).set(updates).where(eq(functions.id, id)).returning();
+    return updatedFunction || undefined;
+  }
+
+  // AI Assistants
+  async getAiAssistants(projectId: number): Promise<AiAssistant[]> {
+    return await db.select().from(aiAssistants).where(eq(aiAssistants.projectId, projectId));
+  }
+
+  async createAiAssistant(assistant: InsertAiAssistant): Promise<AiAssistant> {
+    const [newAssistant] = await db.insert(aiAssistants).values(assistant).returning();
+    return newAssistant;
+  }
+
+  async updateAiAssistant(id: number, updates: Partial<AiAssistant>): Promise<AiAssistant | undefined> {
+    const [updatedAssistant] = await db.update(aiAssistants).set(updates).where(eq(aiAssistants.id, id)).returning();
+    return updatedAssistant || undefined;
+  }
+
+  // Metrics
+  async getMetrics(projectId: number, type?: string): Promise<Metric[]> {
+    if (type) {
+      return await db.select().from(metrics).where(
+        and(eq(metrics.projectId, projectId), eq(metrics.metricType, type))
+      );
+    }
+    
+    return await db.select().from(metrics).where(eq(metrics.projectId, projectId));
+  }
+
+  async addMetric(metric: InsertMetric): Promise<Metric> {
+    const [newMetric] = await db.insert(metrics).values(metric).returning();
+    return newMetric;
+  }
+}
+
+export const storage = new DatabaseStorage();
