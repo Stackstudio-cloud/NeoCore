@@ -46,7 +46,8 @@ Preferred communication style: Simple, everyday language.
 - **Type Safety**: Full TypeScript integration with database operations
 
 ### Enterprise GitHub Integration (2025-01-18)
-- **Repository Structure**: Prepared for stackstudio organization as dedicated repository
+- **Repository Structure**: Connected to Stackstudio-cloud organization as dedicated repository
+- **GitHub Repository**: https://github.com/Stackstudio-cloud/NeoCore
 - **Documentation**: Created comprehensive README and setup guide for team collaboration
 - **Project Management**: Structured for clean versioning and enterprise workflows
 - **Team Workspace**: Ready for import to team workspace with full database integration
