@@ -263,6 +263,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Messages array is required" });
       }
       
+      // Check if OpenAI API key is configured
+      if (!process.env.OPENAI_API_KEY) {
+        return res.status(500).json({ message: "OpenAI API key is not configured. Please add OPENAI_API_KEY to Replit Secrets." });
+      }
+      
       const result = await chatCompletion(messages, systemPrompt);
       res.json(result);
     } catch (error: any) {
