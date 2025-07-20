@@ -35,22 +35,20 @@ export default function Sidebar() {
             const Icon = item.icon;
             
             return (
-              <Link key={item.name} href={item.href}>
-                <a className={cn(
-                  "flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 group",
-                  isActive 
-                    ? "bg-blue-400/20 text-blue-400 neon-glow" 
-                    : "text-gray-300 hover:text-blue-400 hover:bg-blue-400/10"
-                )}>
-                  <div className="flex items-center space-x-3">
-                    <Icon className="w-5 h-5" />
-                    <span className="font-medium">{item.name}</span>
-                  </div>
-                  <ChevronRight className={cn(
-                    "w-4 h-4 transition-transform duration-200",
-                    isActive ? "rotate-90" : "group-hover:translate-x-1"
-                  )} />
-                </a>
+              <Link key={item.name} href={item.href} className={cn(
+                "flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 group",
+                isActive 
+                  ? "bg-blue-400/20 text-blue-400 neon-glow" 
+                  : "text-gray-300 hover:text-blue-400 hover:bg-blue-400/10"
+              )}>
+                <div className="flex items-center space-x-3">
+                  <Icon className="w-5 h-5" />
+                  <span className="font-medium">{item.name}</span>
+                </div>
+                <ChevronRight className={cn(
+                  "w-4 h-4 transition-transform duration-200",
+                  isActive ? "rotate-90" : "group-hover:translate-x-1"
+                )} />
               </Link>
             );
           })}
