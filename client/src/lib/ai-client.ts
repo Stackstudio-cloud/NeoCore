@@ -40,39 +40,46 @@ export interface ChatRequest {
   systemPrompt?: string;
 }
 
-// Generate code using Gemini AI
+// Generate code using OpenAI
 export async function generateCode(request: CodeGenerationRequest): Promise<AIResponse> {
-  return apiRequest("POST", "/api/ai/generate-code", request);
+  const response = await apiRequest("POST", "/api/ai/generate-code", request);
+  return response.json();
 }
 
 // Convert natural language to SQL
 export async function generateSQL(request: SQLGenerationRequest): Promise<AIResponse> {
-  return apiRequest("POST", "/api/ai/generate-sql", request);
+  const response = await apiRequest("POST", "/api/ai/generate-sql", request);
+  return response.json();
 }
 
 // Analyze sentiment of text
 export async function analyzeSentiment(text: string): Promise<Sentiment> {
-  return apiRequest("POST", "/api/ai/analyze-sentiment", { text });
+  const response = await apiRequest("POST", "/api/ai/analyze-sentiment", { text });
+  return response.json();
 }
 
-// Analyze images with Gemini's multimodal capabilities
+// Analyze images with OpenAI Vision
 export async function analyzeImage(request: ImageAnalysisRequest): Promise<AIResponse> {
-  return apiRequest("POST", "/api/ai/analyze-image", request);
+  const response = await apiRequest("POST", "/api/ai/analyze-image", request);
+  return response.json();
 }
 
-// Generate images using Gemini 2.0 Flash
+// Generate images using DALL-E
 export async function generateImage(prompt: string): Promise<{ imageBase64?: string; text: string }> {
-  return apiRequest("POST", "/api/ai/generate-image", { prompt });
+  const response = await apiRequest("POST", "/api/ai/generate-image", { prompt });
+  return response.json();
 }
 
 // Chat completion for development assistance
 export async function chatCompletion(request: ChatRequest): Promise<AIResponse> {
-  return apiRequest("POST", "/api/ai/chat", request);
+  const response = await apiRequest("POST", "/api/ai/chat", request);
+  return response.json();
 }
 
 // Summarize documents and text
 export async function summarizeDocument(text: string, maxLength?: number): Promise<AIResponse> {
-  return apiRequest("POST", "/api/ai/summarize", { text, maxLength });
+  const response = await apiRequest("POST", "/api/ai/summarize", { text, maxLength });
+  return response.json();
 }
 
 // Helper function to convert file to base64
