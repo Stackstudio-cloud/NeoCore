@@ -26,7 +26,7 @@ export default function DevelopmentAssistant({ className = '' }: DevelopmentAssi
     {
       id: '1',
       role: 'assistant',
-      content: 'Hello! I\'m your NeoCore AI development assistant powered by OpenAI GPT-4o. I can help you with:\n\n• Writing database schemas and queries\n• Generating API endpoints\n• Creating serverless functions\n• Optimizing performance\n• Security best practices\n\nWhat would you like to build today?',
+      content: 'Hello! I\'m your NeoCore AI development assistant powered by OpenAI o4-mini. I can help you with:\n\n• Writing database schemas and queries\n• Generating API endpoints\n• Creating serverless functions\n• Optimizing performance\n• Security best practices\n\nWhat would you like to build today?',
       timestamp: new Date(),
       type: 'normal'
     }
@@ -133,7 +133,7 @@ export default function DevelopmentAssistant({ className = '' }: DevelopmentAssi
     setMessages(prev => [...prev, userMessage]);
     setInput('');
 
-    // Use real OpenAI GPT-4o
+    // Use real OpenAI o4-mini
     aiMutation.mutate(message);
   };
 
@@ -148,7 +148,7 @@ export default function DevelopmentAssistant({ className = '' }: DevelopmentAssi
           <Bot className="w-5 h-5 mr-2" />
           AI Development Assistant
           <Badge variant="outline" className="ml-2 text-xs">
-            Powered by OpenAI GPT-4o
+            Powered by OpenAI o4-mini
           </Badge>
         </CardTitle>
       </CardHeader>
@@ -208,7 +208,7 @@ export default function DevelopmentAssistant({ className = '' }: DevelopmentAssi
                     <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
                     <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse animation-delay-100"></div>
                     <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse animation-delay-200"></div>
-                    <span className="text-sm">OpenAI GPT-4o is thinking...</span>
+                    <span className="text-sm">OpenAI o4-mini is thinking...</span>
                   </div>
                 </div>
               </div>

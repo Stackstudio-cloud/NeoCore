@@ -6,7 +6,7 @@ if (!apiKey) {
   console.error("OPENAI_API_KEY environment variable is not set");
 }
 
-// the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
+// Using the latest o4-mini model - the newest reasoning model that replaced o1-mini for cost-efficient frontier AI capabilities
 const openai = new OpenAI({ apiKey: apiKey || "" });
 
 export interface AIResponse {
@@ -49,12 +49,12 @@ Context: ${request.context || 'Modern web development with PostgreSQL, Express.j
 Provide production-ready code with proper error handling, validation, and best practices. Include comments explaining key concepts.`;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "o4-mini",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: request.prompt }
       ],
-      max_tokens: 2000,
+      max_completion_tokens: 2000,
       temperature: 0.7,
     });
 
@@ -87,12 +87,12 @@ Schema: ${request.schema || 'Standard web application tables (users, posts, etc.
 Provide only the SQL query with brief comments. Use PostgreSQL syntax, proper indexing suggestions, and best practices.`;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "o4-mini",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: request.naturalLanguage }
       ],
-      max_tokens: 1000,
+      max_completion_tokens: 1000,
       temperature: 0.3,
     });
 
@@ -114,7 +114,7 @@ Provide only the SQL query with brief comments. Use PostgreSQL syntax, proper in
 export async function analyzeSentiment(text: string): Promise<Sentiment> {
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "o4-mini",
       messages: [
         {
           role: "system",
@@ -126,7 +126,7 @@ export async function analyzeSentiment(text: string): Promise<Sentiment> {
         }
       ],
       response_format: { type: "json_object" },
-      max_tokens: 100,
+      max_completion_tokens: 100,
       temperature: 0.3,
     });
 
@@ -145,7 +145,7 @@ export async function analyzeSentiment(text: string): Promise<Sentiment> {
 export async function analyzeImage(base64Image: string, prompt?: string): Promise<string> {
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "o4-mini",
       messages: [
         {
           role: "user",
@@ -163,7 +163,7 @@ export async function analyzeImage(base64Image: string, prompt?: string): Promis
           ],
         },
       ],
-      max_tokens: 500,
+      max_completion_tokens: 500,
     });
 
     return response.choices[0]?.message?.content || "Failed to analyze image";
@@ -232,9 +232,9 @@ export async function chatCompletion(
     ];
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "o4-mini",
       messages: openaiMessages,
-      max_tokens: 2000,
+      max_completion_tokens: 2000,
       temperature: 0.7,
     });
 
@@ -262,11 +262,11 @@ export async function summarizeDocument(text: string, maxLength?: number): Promi
     const prompt = `Please summarize the following text concisely while maintaining key points${maxLength ? ` in about ${maxLength} words` : ''}:\n\n${text}`;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "o4-mini",
       messages: [
         { role: "user", content: prompt }
       ],
-      max_tokens: maxLength ? Math.min(maxLength * 2, 1000) : 500,
+      max_completion_tokens: maxLength ? Math.min(maxLength * 2, 1000) : 500,
       temperature: 0.5,
     });
 
