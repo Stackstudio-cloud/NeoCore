@@ -3,6 +3,15 @@ import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
 import { insertProjectSchema, insertDatabaseSchema, insertStorageBucketSchema, insertFunctionSchema, insertAiAssistantSchema } from "@shared/schema";
+import { 
+  generateCode, 
+  generateSQL, 
+  analyzeSentiment, 
+  analyzeImage,
+  chatCompletion,
+  summarizeDocument,
+  generateImage
+} from "./lib/gemini";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
@@ -192,6 +201,77 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(metrics);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch metrics" });
+    }
+  });
+
+  // AI API routes powered by Gemini
+  app.post("/api/ai/generate-code", async (req, res) => {
+    try {
+      const { prompt, language, context } = req.body;
+      const result = await generateCode({ prompt, language, context });
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/ai/generate-sql", async (req, res) => {
+    try {
+      const { naturalLanguage, schema, context } = req.body;
+      const result = await generateSQL({ naturalLanguage, schema, context });
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/ai/analyze-sentiment", async (req, res) => {
+    try {
+      const { text } = req.body;
+      const result = await analyzeSentiment(text);
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/ai/analyze-image", async (req, res) => {
+    try {
+      const { imageBase64, prompt } = req.body;
+      const result = await analyzeImage(imageBase64, prompt);
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/ai/generate-image", async (req, res) => {
+    try {
+      const { prompt } = req.body;
+      const result = await generateImage(prompt);
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/ai/chat", async (req, res) => {
+    try {
+      const { messages, systemPrompt } = req.body;
+      const result = await chatCompletion(messages, systemPrompt);
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/ai/summarize", async (req, res) => {
+    try {
+      const { text, maxLength } = req.body;
+      const result = await summarizeDocument(text, maxLength);
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
     }
   });
 
