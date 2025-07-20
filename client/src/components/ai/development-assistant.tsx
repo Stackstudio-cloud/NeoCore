@@ -148,7 +148,7 @@ export default function DevelopmentAssistant({ className = '' }: DevelopmentAssi
           <Bot className="w-5 h-5 mr-2" />
           AI Development Assistant
           <Badge variant="outline" className="ml-2 text-xs">
-            NeoCore AI Assistant
+            Powered by OpenAI GPT-4o
           </Badge>
         </CardTitle>
       </CardHeader>
