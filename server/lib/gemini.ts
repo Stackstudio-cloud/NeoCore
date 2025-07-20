@@ -6,7 +6,7 @@ if (!apiKey) {
   console.error("OPENAI_API_KEY environment variable is not set");
 }
 
-// Using the latest o4-mini model - the newest reasoning model that replaced o1-mini for cost-efficient frontier AI capabilities
+// Using the latest gpt-4o-mini model - the newest reasoning model that replaced o1-mini for cost-efficient frontier AI capabilities
 const openai = new OpenAI({ apiKey: apiKey || "" });
 
 export interface AIResponse {
@@ -49,13 +49,12 @@ Context: ${request.context || 'Modern web development with PostgreSQL, Express.j
 Provide production-ready code with proper error handling, validation, and best practices. Include comments explaining key concepts.`;
 
     const response = await openai.chat.completions.create({
-      model: "o4-mini",
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: request.prompt }
       ],
-      max_completion_tokens: 2000,
-      temperature: 0.7,
+      max_tokens: 2000,
     });
 
     const content = response.choices[0]?.message?.content || "Failed to generate code";
@@ -87,13 +86,12 @@ Schema: ${request.schema || 'Standard web application tables (users, posts, etc.
 Provide only the SQL query with brief comments. Use PostgreSQL syntax, proper indexing suggestions, and best practices.`;
 
     const response = await openai.chat.completions.create({
-      model: "o4-mini",
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: request.naturalLanguage }
       ],
-      max_completion_tokens: 1000,
-      temperature: 0.3,
+      max_tokens: 1000,
     });
 
     const content = response.choices[0]?.message?.content || "Failed to generate SQL";
@@ -114,7 +112,7 @@ Provide only the SQL query with brief comments. Use PostgreSQL syntax, proper in
 export async function analyzeSentiment(text: string): Promise<Sentiment> {
   try {
     const response = await openai.chat.completions.create({
-      model: "o4-mini",
+      model: "gpt-4o-mini",
       messages: [
         {
           role: "system",
@@ -126,8 +124,7 @@ export async function analyzeSentiment(text: string): Promise<Sentiment> {
         }
       ],
       response_format: { type: "json_object" },
-      max_completion_tokens: 100,
-      temperature: 0.3,
+      max_tokens: 100,
     });
 
     const result = JSON.parse(response.choices[0]?.message?.content || "{}");
@@ -145,7 +142,7 @@ export async function analyzeSentiment(text: string): Promise<Sentiment> {
 export async function analyzeImage(base64Image: string, prompt?: string): Promise<string> {
   try {
     const response = await openai.chat.completions.create({
-      model: "o4-mini",
+      model: "gpt-4o-mini",
       messages: [
         {
           role: "user",
@@ -163,7 +160,7 @@ export async function analyzeImage(base64Image: string, prompt?: string): Promis
           ],
         },
       ],
-      max_completion_tokens: 500,
+      max_tokens: 500,
     });
 
     return response.choices[0]?.message?.content || "Failed to analyze image";
@@ -232,10 +229,9 @@ export async function chatCompletion(
     ];
 
     const response = await openai.chat.completions.create({
-      model: "o4-mini",
+      model: "gpt-4o-mini",
       messages: openaiMessages,
-      max_completion_tokens: 2000,
-      temperature: 0.7,
+      max_tokens: 2000,
     });
 
     const content = response.choices[0]?.message?.content || "I apologize, but I couldn't generate a response. Please try again.";
@@ -262,12 +258,11 @@ export async function summarizeDocument(text: string, maxLength?: number): Promi
     const prompt = `Please summarize the following text concisely while maintaining key points${maxLength ? ` in about ${maxLength} words` : ''}:\n\n${text}`;
 
     const response = await openai.chat.completions.create({
-      model: "o4-mini",
+      model: "gpt-4o-mini",
       messages: [
         { role: "user", content: prompt }
       ],
-      max_completion_tokens: maxLength ? Math.min(maxLength * 2, 1000) : 500,
-      temperature: 0.5,
+      max_tokens: maxLength ? Math.min(maxLength * 2, 1000) : 500,
     });
 
     const content = response.choices[0]?.message?.content || "Failed to summarize document";

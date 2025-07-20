@@ -50,7 +50,7 @@ export default function AIPage() {
       model: selectedModel,
       description: "AI assistant for data interaction",
       config: {
-        temperature: 0.7,
+        // temperature: 1.0 (default only for newer models)
         max_tokens: 1000,
       },
       active: true,
