@@ -136,8 +136,8 @@ export async function analyzeSentiment(text: string): Promise<Sentiment> {
       rating: Math.max(1, Math.min(5, Math.round(result.rating || 3))),
       confidence: Math.max(0, Math.min(1, result.confidence || 0.5)),
     };
-  } catch (error) {
-    throw new Error("Failed to analyze sentiment: " + error.message);
+  } catch (error: any) {
+    throw new Error("Failed to analyze sentiment: " + (error?.message || error));
   }
 }
 
@@ -183,7 +183,7 @@ export async function generateImage(prompt: string): Promise<{ imageBase64?: str
       quality: "standard",
     });
 
-    const imageUrl = response.data[0]?.url;
+    const imageUrl = response.data?.[0]?.url;
     
     return { 
       imageBase64: undefined, // URL provided instead
