@@ -1,12 +1,21 @@
 # NeoCore Platform
 
+<div align="center">
+  <img src="./assets/neocore-logo.svg" alt="NeoCore Platform" width="300"/>
+  
+  > A modern, AI-powered backend development platform built with React, Express.js, and PostgreSQL
+</div>
+
+<div align="center">
+
 [![Deploy with Replit](https://replit.com/badge/github/your-username/neocore-platform)](https://replit.com/new/github/your-username/neocore-platform)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Express.js](https://img.shields.io/badge/Express.js-404D59?style=flat&logo=express)](https://expressjs.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white)](https://postgresql.org/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o--mini-00FFFF?style=flat&logo=openai&logoColor=white)](https://openai.com/)
 
-> A modern, cyberpunk-themed backend development platform built with React, Express.js, and PostgreSQL
+</div>
 
 <div align="center">
   
