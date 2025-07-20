@@ -1,7 +1,12 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 
 // Initialize Gemini AI with API key
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
+const apiKey = process.env.GEMINI_API_KEY;
+if (!apiKey) {
+  console.error("GEMINI_API_KEY environment variable is not set");
+}
+
+const ai = new GoogleGenAI({ apiKey: apiKey || "" });
 
 export interface AIResponse {
   text: string;
@@ -31,6 +36,9 @@ export interface Sentiment {
 // Code generation using Gemini
 export async function generateCode(request: CodeGenerationRequest): Promise<AIResponse> {
   try {
+    if (!apiKey) {
+      throw new Error("Gemini API key is not configured. Please set GEMINI_API_KEY environment variable.");
+    }
     const systemPrompt = `You are an expert software developer. Generate clean, efficient, and well-documented code based on the user's requirements.
     
 Language: ${request.language || 'TypeScript/JavaScript'}
@@ -39,7 +47,7 @@ Context: ${request.context || 'Modern web development'}
 Provide only the code with minimal explanation. Use best practices and modern syntax.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-1.5-flash",
       config: {
         systemInstruction: systemPrompt,
       },
@@ -53,8 +61,12 @@ Provide only the code with minimal explanation. Use best practices and modern sy
         outputTokens: 0,
       },
     };
-  } catch (error) {
-    throw new Error(`Failed to generate code: ${error}`);
+  } catch (error: any) {
+    console.error("Gemini API Error:", error);
+    if (error.message?.includes('API_KEY_INVALID') || error.message?.includes('invalid_api_key')) {
+      throw new Error("Invalid Gemini API key. Please check your GEMINI_API_KEY in Replit Secrets.");
+    }
+    throw new Error(`Failed to generate code: ${error.message || error}`);
   }
 }
 
@@ -69,7 +81,7 @@ Context: ${request.context || 'PostgreSQL database with modern features'}
 Provide only the SQL query without explanation. Use PostgreSQL syntax and best practices.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-pro",
+      model: "gemini-1.5-pro",
       config: {
         systemInstruction: systemPrompt,
       },
@@ -96,7 +108,7 @@ Analyze the sentiment of the text and provide a rating from 1 to 5 stars and a c
 Respond with JSON in this format: {'rating': number, 'confidence': number}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-pro",
+      model: "gemini-1.5-pro",
       config: {
         systemInstruction: systemPrompt,
         responseMimeType: "application/json",
@@ -136,7 +148,7 @@ export async function analyzeImage(imageBase64: string, prompt?: string): Promis
     ];
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-pro",
+      model: "gemini-1.5-pro",
       contents: contents,
     });
 
@@ -155,12 +167,11 @@ export async function analyzeImage(imageBase64: string, prompt?: string): Promis
 // Generate images using Gemini 2.0 Flash
 export async function generateImage(prompt: string): Promise<{ imageBase64?: string; text: string }> {
   try {
+    // Note: Image generation requires Gemini 2.0 Flash which may not be available yet
+    // Using text response for now
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash-preview-image-generation",
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      config: {
-        responseModalities: [Modality.TEXT, Modality.IMAGE],
-      },
+      model: "gemini-1.5-flash",
+      contents: `Generate a detailed description for creating an image: ${prompt}`,
     });
 
     const candidates = response.candidates;
@@ -184,7 +195,10 @@ export async function generateImage(prompt: string): Promise<{ imageBase64?: str
       }
     }
 
-    return { imageBase64, text };
+    return { 
+      imageBase64: undefined, 
+      text: response.text || "Failed to generate image description" 
+    };
   } catch (error) {
     throw new Error(`Failed to generate image: ${error}`);
   }
@@ -196,13 +210,16 @@ export async function chatCompletion(
   systemPrompt?: string
 ): Promise<AIResponse> {
   try {
+    if (!apiKey) {
+      throw new Error("Gemini API key is not configured. Please set GEMINI_API_KEY environment variable.");
+    }
     const conversation = messages.map(msg => ({
       role: msg.role === "assistant" ? "model" : "user",
       parts: [{ text: msg.content }],
     }));
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-1.5-flash",
       config: systemPrompt ? { systemInstruction: systemPrompt } : undefined,
       contents: conversation,
     });
@@ -214,8 +231,12 @@ export async function chatCompletion(
         outputTokens: 0,
       },
     };
-  } catch (error) {
-    throw new Error(`Failed to get chat completion: ${error}`);
+  } catch (error: any) {
+    console.error("Gemini Chat API Error:", error);
+    if (error.message?.includes('API_KEY_INVALID') || error.message?.includes('invalid_api_key')) {
+      throw new Error("Invalid Gemini API key. Please check your GEMINI_API_KEY in Replit Secrets.");
+    }
+    throw new Error(`Failed to get chat completion: ${error.message || error}`);
   }
 }
 
@@ -225,7 +246,7 @@ export async function summarizeDocument(text: string, maxLength?: number): Promi
     const prompt = `Please summarize the following text concisely while maintaining key points${maxLength ? ` in about ${maxLength} words` : ''}:\n\n${text}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-1.5-flash",
       contents: prompt,
     });
 

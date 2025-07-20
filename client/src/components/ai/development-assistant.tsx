@@ -135,7 +135,7 @@ export default function DevelopmentAssistant({ className = '' }: DevelopmentAssi
           <Bot className="w-5 h-5 mr-2" />
           AI Development Assistant
           <Badge variant="outline" className="ml-2 text-xs">
-            Powered by Gemini
+            Powered by Gemini 1.5
           </Badge>
         </CardTitle>
       </CardHeader>

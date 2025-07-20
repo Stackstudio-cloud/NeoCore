@@ -258,10 +258,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/ai/chat", async (req, res) => {
     try {
       const { messages, systemPrompt } = req.body;
+      
+      if (!messages || !Array.isArray(messages)) {
+        return res.status(400).json({ message: "Messages array is required" });
+      }
+      
       const result = await chatCompletion(messages, systemPrompt);
       res.json(result);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
+    } catch (error: any) {
+      console.error("Chat API Error:", error);
+      res.status(500).json({ message: error.message || "Internal server error" });
     }
   });
 
