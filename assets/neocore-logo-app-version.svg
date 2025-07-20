@@ -1,0 +1,99 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Main gradient matching the actual logo -->
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#00ff88;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#44ff44;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#88ff00;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Dark inner gradient -->
+    <linearGradient id="innerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a0a;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Text gradient -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00ff88;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#88ff00;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Outer rounded hexagonal shield -->
+  <path d="M 150 30 
+           L 220 65 
+           Q 240 75 240 100
+           L 240 200 
+           Q 240 225 220 235
+           L 150 270 
+           Q 150 275 150 270
+           L 80 235 
+           Q 60 225 60 200
+           L 60 100 
+           Q 60 75 80 65
+           Z" 
+        fill="url(#mainGradient)" 
+        filter="url(#glow)"/>
+  
+  <!-- Inner dark shield -->
+  <path d="M 150 50 
+           L 200 75 
+           Q 215 80 215 100
+           L 215 200 
+           Q 215 220 200 225
+           L 150 250 
+           L 100 225 
+           Q 85 220 85 200
+           L 85 100 
+           Q 85 80 100 75
+           Z" 
+        fill="url(#innerGradient)" 
+        stroke="rgba(0,255,255,0.3)" 
+        stroke-width="1"/>
+  
+  <!-- Network connection lines in header -->
+  <g stroke="url(#textGradient)" stroke-width="2" opacity="0.8" fill="none">
+    <path d="M 120 90 Q 135 85 150 90 Q 165 85 180 90"/>
+    <path d="M 125 100 Q 140 95 150 100 Q 160 95 175 100"/>
+    <path d="M 130 110 Q 142 105 150 110 Q 158 105 170 110"/>
+  </g>
+  
+  <!-- NEOCORE text at top -->
+  <text x="150" y="45" 
+        font-family="Arial, sans-serif" 
+        font-size="18" 
+        font-weight="bold" 
+        text-anchor="middle" 
+        fill="url(#textGradient)">NEOCORE</text>
+  
+  <!-- Large DB text in center -->
+  <text x="150" y="175" 
+        font-family="Arial, sans-serif" 
+        font-size="48" 
+        font-weight="bold" 
+        text-anchor="middle" 
+        fill="url(#textGradient)"
+        filter="url(#glow)">DB</text>
+  
+  <!-- Bottom connection decorative lines -->
+  <g stroke="url(#textGradient)" stroke-width="1.5" opacity="0.6">
+    <line x1="120" y1="215" x2="135" y2="200"/>
+    <line x1="150" y1="218" x2="150" y2="205"/>
+    <line x1="180" y1="215" x2="165" y2="200"/>
+    <circle cx="135" cy="200" r="2" fill="url(#textGradient)"/>
+    <circle cx="150" cy="205" r="2" fill="url(#textGradient)"/>
+    <circle cx="165" cy="200" r="2" fill="url(#textGradient)"/>
+  </g>
+</svg>
