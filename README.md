@@ -8,6 +8,14 @@
 
 > A modern, cyberpunk-themed backend development platform built with React, Express.js, and PostgreSQL
 
+<div align="center">
+  
+![NeoCore Platform Demo](./assets/demo-animation.svg)
+  
+*Live dashboard with real-time metrics, AI assistance, and cyberpunk aesthetics*
+
+</div>
+
 ## 🌟 Features
 
 ### 🎯 Core Platform Features
@@ -220,6 +228,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Design inspired by cyberpunk aesthetics and modern web design
 - Built with modern web technologies and best practices
 - Special thanks to the open-source community for the amazing tools
+
+## 🗺️ Roadmap
+
+See our [ROADMAP.md](ROADMAP.md) for planned features and improvements including:
+- Real database integration with visual schema designer
+- Enhanced AI assistant with code generation
+- Real-time collaboration features
+- Advanced monitoring and analytics
+- Mobile app development
 
 ## 📞 Support
 
