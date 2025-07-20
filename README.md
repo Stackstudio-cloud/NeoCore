@@ -1,134 +1,240 @@
 # NeoCore Platform
 
-A cyberpunk-themed backend development platform by StackStudio Cloud providing comprehensive infrastructure services including database management, GraphQL APIs, authentication, storage, serverless functions, and AI capabilities.
+[![Deploy with Replit](https://replit.com/badge/github/your-username/neocore-platform)](https://replit.com/new/github/your-username/neocore-platform)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-404D59?style=flat&logo=express)](https://expressjs.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white)](https://postgresql.org/)
 
-## ✨ Features
+> A modern, cyberpunk-themed backend development platform built with React, Express.js, and PostgreSQL
 
-### 🎮 Cyberpunk Aesthetics
-- Matrix rain effects with falling code animation
-- Dynamic particle systems with neon colors
-- Glass morphism and holographic UI elements
-- Glitch text effects and floating animations
-- Interactive sound system with cyberpunk audio
+## 🌟 Features
 
-### 🤖 AI-Powered Development
-- Comprehensive AI development assistant
-- Code generation and debugging help
-- Natural language to SQL/GraphQL conversion
-- Smart code examples with best practices
-- Performance optimization suggestions
+### 🎯 Core Platform Features
+- **Database Management**: PostgreSQL with visual query builder and real-time monitoring
+- **GraphQL API**: Interactive GraphQL playground with schema explorer
+- **Authentication**: Multi-provider auth system (Email, Google, GitHub, etc.)
+- **Cloud Storage**: File management with bucket-based organization
+- **Serverless Functions**: Deploy and manage cloud functions with real-time metrics
+- **AI Assistant**: Built-in development assistant for code generation and queries
+- **API Playground**: Full-featured HTTP client for testing APIs
 
-### 🛠️ Backend Services
-- **Database Management**: PostgreSQL with Drizzle ORM
-- **API Playground**: Interactive HTTP request builder
-- **Authentication**: Multiple providers (email, Google, GitHub)
-- **Storage**: File management with buckets
-- **Functions**: Serverless function deployment
-- **Real-time**: WebSocket integration
-- **Monitoring**: Live performance metrics
+### 🎨 Cyberpunk Interface
+- **Matrix Rain Effects**: Animated falling code background
+- **Particle Systems**: Dynamic particle backgrounds with neon colors
+- **Data Stream Animations**: Real-time data flow effects in header
+- **Holographic Charts**: Custom charts with neon glow effects
+- **Glass Morphism**: Advanced backdrop blur and transparency effects
+- **Sound System**: Optional cyberpunk audio feedback (toggleable)
+
+### 🔧 Developer Experience
+- **Real-time Updates**: WebSocket-powered live metrics and status updates
+- **Code Editor**: Syntax-highlighted code blocks with copy/run functionality
+- **Interactive Dashboard**: Metrics carousel and service grid
+- **Responsive Design**: Mobile-optimized cyberpunk interface
+- **Type Safety**: Full TypeScript integration throughout
 
 ## 🚀 Quick Start
 
-```bash
-# Install dependencies
-npm install
+### Prerequisites
+- Node.js 18+ 
+- PostgreSQL database (we recommend [Neon](https://neon.tech/))
 
-# Set up database
-npm run db:push
+### Installation
 
-# Start development server
-npm run dev
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/neocore-platform.git
+   cd neocore-platform
+   ```
 
-## 🏗️ Architecture
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-- **Frontend**: React + TypeScript + Tailwind CSS
-- **Backend**: Express.js + PostgreSQL + Drizzle ORM
-- **Database**: Neon PostgreSQL with connection pooling
-- **Real-time**: WebSocket server for live updates
-- **UI**: Radix UI primitives with cyberpunk theme
+3. **Set up environment variables**
+   ```bash
+   # Create .env file
+   echo "DATABASE_URL=your_postgresql_connection_string" > .env
+   ```
 
-## 🔧 Environment Variables
+4. **Initialize the database**
+   ```bash
+   npm run db:push
+   ```
 
-```env
-DATABASE_URL=postgresql://...
-PGPORT=5432
-PGUSER=...
-PGPASSWORD=...
-PGDATABASE=...
-PGHOST=...
-```
+5. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+The application will be available at `http://localhost:5000`
 
 ## 📁 Project Structure
 
 ```
-├── client/          # React frontend
+├── client/                 # Frontend React application
 │   ├── src/
-│   │   ├── components/  # UI components
-│   │   ├── pages/       # Application pages
-│   │   ├── hooks/       # Custom hooks
-│   │   └── lib/         # Utilities
-├── server/          # Express backend
-│   ├── index.ts     # Server entry point
-│   ├── routes.ts    # API routes
-│   ├── storage.ts   # Database operations
-│   └── db.ts        # Database connection
-├── shared/          # Shared types and schemas
-└── components.json  # UI component config
+│   │   ├── components/    # Reusable UI components
+│   │   │   ├── ui/        # Base UI components (shadcn/ui)
+│   │   │   ├── layout/    # Layout components
+│   │   │   ├── dashboard/ # Dashboard-specific components
+│   │   │   └── effects/   # Visual effects (matrix, particles)
+│   │   ├── pages/         # Application pages
+│   │   ├── hooks/         # Custom React hooks
+│   │   └── lib/           # Utilities and configurations
+│   └── index.html
+├── server/                 # Backend Express.js application
+│   ├── index.ts           # Server entry point
+│   ├── routes.ts          # API routes
+│   ├── db.ts              # Database connection
+│   ├── storage.ts         # Data access layer
+│   └── vite.ts            # Vite development integration
+├── shared/                 # Shared types and schemas
+│   └── schema.ts          # Database schema and types
+└── package.json
 ```
 
-## 🎨 UI Components
+## 🛠️ Technology Stack
 
-- Interactive metrics carousel
-- Neon-bordered cards with hover effects
-- Code editor with syntax highlighting
-- Real-time data visualization
-- Matrix rain background effects
-- Holographic charts and graphs
+### Frontend
+- **React 18** - Modern UI library with hooks
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Fast build tool and development server
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI** - Accessible component primitives
+- **TanStack Query** - Server state management
+- **Wouter** - Minimalist client-side routing
+- **Framer Motion** - Animation library
 
-## 🔮 AI Assistant Features
+### Backend
+- **Express.js** - Fast web framework for Node.js
+- **TypeScript** - Type-safe server-side development
+- **Drizzle ORM** - Type-safe database operations
+- **PostgreSQL** - Robust relational database
+- **WebSocket** - Real-time bidirectional communication
 
-- Database schema generation
-- API endpoint creation
-- Code optimization suggestions
-- Performance monitoring
-- Natural language queries
-- Smart error handling
+### Development Tools
+- **ESBuild** - Fast bundling for production
+- **Drizzle Kit** - Database migrations and introspection
+- **TSX** - TypeScript execution for development
 
-## 🌐 Team Collaboration
+## 🔧 Development
 
-- Real-time collaboration support
-- Shared database across team workspace
-- Enterprise GitHub integration with stackstudio organization
-- Environment variable management
-- Team member access control
-- Dedicated repository structure for clean project management
+### Available Scripts
 
-## 📊 Performance Monitoring
+```bash
+# Development
+npm run dev          # Start development server
+npm run check        # Type checking
 
-- Real-time metrics dashboard
-- API request tracking
-- Database performance monitoring
-- Error rate analysis
-- Storage usage statistics
-- Function invocation metrics
+# Database
+npm run db:push      # Push schema changes to database
 
-## 🛡️ Security
+# Production
+npm run build        # Build for production
+npm run start        # Start production server
+```
 
-- JWT authentication
-- Input validation
-- Rate limiting
-- Secure database connections
-- Environment variable protection
+### Environment Variables
 
-## 📚 Documentation
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `DATABASE_URL` | PostgreSQL connection string | Yes |
+| `PORT` | Server port (defaults to 5000) | No |
+| `NODE_ENV` | Environment (development/production) | No |
 
-See `SETUP-GUIDE.md` for detailed team workspace setup instructions.
+## 🎨 Customization
 
-## 🎯 Built for Teams
+### Theme Configuration
+The application uses a cyberpunk color scheme defined in `client/src/index.css`. Key color variables:
 
-NeoCore is designed for development teams who want a powerful, visually stunning backend platform with AI-powered tools and comprehensive infrastructure services.
+```css
+:root {
+  --neon-blue: #00d4ff;
+  --neon-green: #00ff88;
+  --neon-pink: #ff0080;
+  --cyber-dark: #0a0a0f;
+  --glass-bg: rgba(10, 10, 15, 0.8);
+}
+```
+
+### Adding New Features
+1. Define database schema in `shared/schema.ts`
+2. Add API routes in `server/routes.ts`
+3. Implement storage methods in `server/storage.ts`
+4. Create React components in `client/src/components/`
+5. Add pages to `client/src/pages/` and register in `App.tsx`
+
+## 🔒 Security Features
+
+- **Input Validation**: Zod schema validation on all API endpoints
+- **SQL Injection Protection**: Parameterized queries via Drizzle ORM
+- **Type Safety**: Full TypeScript coverage prevents runtime errors
+- **Error Handling**: Comprehensive error boundary and logging
+- **CORS Configuration**: Proper cross-origin request handling
+
+## 📊 Database Schema
+
+The application uses a PostgreSQL database with the following main tables:
+
+- **projects** - Main project entities
+- **databases** - Database instances per project
+- **api_endpoints** - API configurations
+- **auth_providers** - Authentication provider settings
+- **storage_buckets** - File storage containers
+- **functions** - Serverless function definitions
+- **ai_assistants** - AI assistant configurations
+- **metrics** - Performance and usage metrics
+
+## 🚢 Deployment
+
+### Replit Deployment
+1. Fork this repository to your GitHub account
+2. Import to Replit using the GitHub integration
+3. Set the `DATABASE_URL` environment variable
+4. Click "Run" to start the application
+
+### Manual Deployment
+1. Build the application: `npm run build`
+2. Set environment variables
+3. Start the production server: `npm start`
+
+The application serves both the frontend and API from a single Express.js server.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Design inspired by cyberpunk aesthetics and modern web design
+- Built with modern web technologies and best practices
+- Special thanks to the open-source community for the amazing tools
+
+## 📞 Support
+
+If you have any questions or issues:
+
+1. Check the [Issues](https://github.com/your-username/neocore-platform/issues) page
+2. Create a new issue with a detailed description
+3. Join our [Discord community](https://discord.gg/your-invite) for real-time help
 
 ---
 
-*Built with ❤️ using modern web technologies and cyberpunk aesthetics*
+<div align="center">
+
+**Built with ❤️ by the NeoCore team**
+
+[Demo](https://your-demo-url.replit.app) • [Documentation](https://your-docs-url.com) • [Discord](https://discord.gg/your-invite)
+
+</div>
