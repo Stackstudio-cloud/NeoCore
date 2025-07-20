@@ -49,7 +49,7 @@ Context: ${request.context || 'Modern web development with PostgreSQL, Express.j
 Provide production-ready code with proper error handling, validation, and best practices. Include comments explaining key concepts.`;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: request.prompt }
@@ -87,7 +87,7 @@ Schema: ${request.schema || 'Standard web application tables (users, posts, etc.
 Provide only the SQL query with brief comments. Use PostgreSQL syntax, proper indexing suggestions, and best practices.`;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: request.naturalLanguage }
@@ -114,7 +114,7 @@ Provide only the SQL query with brief comments. Use PostgreSQL syntax, proper in
 export async function analyzeSentiment(text: string): Promise<Sentiment> {
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4o-mini",
       messages: [
         {
           role: "system",
@@ -145,7 +145,7 @@ export async function analyzeSentiment(text: string): Promise<Sentiment> {
 export async function analyzeImage(base64Image: string, prompt?: string): Promise<string> {
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4o-mini",
       messages: [
         {
           role: "user",
@@ -232,7 +232,7 @@ export async function chatCompletion(
     ];
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4o-mini",
       messages: openaiMessages,
       max_tokens: 2000,
       temperature: 0.7,
@@ -262,7 +262,7 @@ export async function summarizeDocument(text: string, maxLength?: number): Promi
     const prompt = `Please summarize the following text concisely while maintaining key points${maxLength ? ` in about ${maxLength} words` : ''}:\n\n${text}`;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4o-mini",
       messages: [
         { role: "user", content: prompt }
       ],
