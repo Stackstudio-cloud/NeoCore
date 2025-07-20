@@ -47,7 +47,7 @@ Context: ${request.context || 'Modern web development'}
 Provide only the code with minimal explanation. Use best practices and modern syntax.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.0-flash-exp",
       config: {
         systemInstruction: systemPrompt,
       },
@@ -81,7 +81,7 @@ Context: ${request.context || 'PostgreSQL database with modern features'}
 Provide only the SQL query without explanation. Use PostgreSQL syntax and best practices.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-pro",
+      model: "gemini-2.0-flash-exp",
       config: {
         systemInstruction: systemPrompt,
       },
@@ -170,7 +170,7 @@ export async function generateImage(prompt: string): Promise<{ imageBase64?: str
     // Note: Image generation requires Gemini 2.0 Flash which may not be available yet
     // Using text response for now
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.0-flash-exp", 
       contents: `Generate a detailed description for creating an image: ${prompt}`,
     });
 
@@ -219,7 +219,7 @@ export async function chatCompletion(
     }));
 
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.0-flash-exp",
       config: systemPrompt ? { systemInstruction: systemPrompt } : undefined,
       contents: conversation,
     });
@@ -246,7 +246,7 @@ export async function summarizeDocument(text: string, maxLength?: number): Promi
     const prompt = `Please summarize the following text concisely while maintaining key points${maxLength ? ` in about ${maxLength} words` : ''}:\n\n${text}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.0-flash-exp",
       contents: prompt,
     });
 

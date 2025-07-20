@@ -67,11 +67,24 @@ export default function DevelopmentAssistant({ className = '' }: DevelopmentAssi
       
       conversationHistory.push({ role: 'user', content: userMessage });
       
-      const systemPrompt = `You are a NeoCore AI development assistant specialized in backend development. 
-      You help with database schemas, API development, serverless functions, and modern web development.
-      Provide practical, production-ready code examples and clear explanations.
-      Use PostgreSQL for database examples and modern JavaScript/TypeScript for code examples.
-      Format code blocks with proper syntax highlighting using markdown.`;
+      const systemPrompt = `You are an AI development assistant for NeoCore, a comprehensive backend development platform. 
+      NeoCore is a modern full-stack application that provides:
+      - PostgreSQL database management with Drizzle ORM
+      - REST API development with Express.js and TypeScript
+      - Real-time features with WebSocket support
+      - React frontend with Tailwind CSS and shadcn/ui components
+      - AI-powered development tools and code generation
+      
+      Your role is to help developers with:
+      - Database schema design and optimization
+      - API endpoint development and security
+      - Frontend component creation
+      - Performance optimization
+      - Modern web development best practices
+      
+      Always provide practical, production-ready code examples using the NeoCore stack (PostgreSQL, Express.js, React, TypeScript).
+      Format code blocks with proper syntax highlighting using markdown.
+      Be helpful, detailed, and focus on modern development practices.`;
       
       return await chatCompletion({ 
         messages: conversationHistory, 
@@ -135,7 +148,7 @@ export default function DevelopmentAssistant({ className = '' }: DevelopmentAssi
           <Bot className="w-5 h-5 mr-2" />
           AI Development Assistant
           <Badge variant="outline" className="ml-2 text-xs">
-            Powered by Gemini 1.5
+            Powered by Gemini 2.0
           </Badge>
         </CardTitle>
       </CardHeader>
