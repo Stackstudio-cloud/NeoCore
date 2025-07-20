@@ -27,11 +27,12 @@ Preferred communication style: Simple, everyday language. Avoid excessive mentio
 - **Error Handling**: Added global error handlers for unhandled promise rejections
 - **Environment Security**: Implemented proper client/server separation and security practices
 
-### OpenAI o4-mini Integration (2025-01-20)
-- **API Integration**: Successfully integrated OpenAI o4-mini for real AI-powered development assistance
+### OpenAI GPT-4o-mini Integration (2025-01-20)
+- **API Integration**: Successfully integrated OpenAI GPT-4o-mini for real AI-powered development assistance
+- **Parameter Compatibility**: Fixed API parameter issues with temperature and max_tokens for stable performance
 - **Advanced Code Generation**: Real AI-powered code generation with contextual understanding
 - **Enhanced Development Assistant**: AI provides intelligent, conversational responses for complex development questions
-- **Professional Integration**: OpenAI o4-mini API - latest reasoning model for cost-efficient frontier AI
+- **Professional Integration**: OpenAI GPT-4o-mini - reliable, fast, and cost-effective AI model
 - **NeoCore-Specific Guidance**: AI responses tailored specifically for PostgreSQL, Express.js, React, and TypeScript stack
 
 ### Latest UI/UX Improvements (2025-01-20)
