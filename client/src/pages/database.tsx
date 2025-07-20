@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import NeonCard from "@/components/ui/neon-card";
 import MetricCard from "@/components/ui/metric-card";
@@ -6,6 +7,8 @@ import CodeEditor from "@/components/ui/code-editor";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Database, Plus, Settings, Activity } from "lucide-react";
+import { TableSkeleton, CardSkeleton } from "@/components/ui/loading-skeleton";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
 
 export default function DatabasePage() {
   const { data: databases, isLoading } = useQuery({
@@ -30,7 +33,17 @@ INSERT INTO users (name, email, profile) VALUES
 ('John Doe', 'john@example.com', '{"age": 30, "city": "SF"}');`;
 
   if (isLoading) {
-    return <div className="animate-pulse">Loading databases...</div>;
+    return (
+      <div className="animate-slide-left space-y-6">
+        <CardSkeleton />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+        </div>
+        <TableSkeleton />
+      </div>
+    );
   }
 
   const database = databases?.[0];

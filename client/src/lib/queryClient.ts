@@ -1,9 +1,12 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
+import { handleApiError, showErrorToast } from "./error-handler";
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
     const text = (await res.text()) || res.statusText;
-    throw new Error(`${res.status}: ${text}`);
+    const error = new Error(`${res.status}: ${text}`);
+    (error as any).status = res.status;
+    throw error;
   }
 }
 
@@ -47,11 +50,32 @@ export const queryClient = new QueryClient({
       queryFn: getQueryFn({ on401: "throw" }),
       refetchInterval: false,
       refetchOnWindowFocus: false,
-      staleTime: Infinity,
-      retry: false,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      cacheTime: 10 * 60 * 1000, // 10 minutes
+      retry: (failureCount, error) => {
+        // Don't retry on client errors
+        if (error && typeof error === 'object' && 'status' in error) {
+          const status = (error as any).status;
+          if (status >= 400 && status < 500) {
+            return false;
+          }
+        }
+        return failureCount < 2;
+      },
+      retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
     },
     mutations: {
-      retry: false,
+      retry: (failureCount, error) => {
+        // Retry on network errors only
+        if (error && typeof error === 'object' && 'status' in error) {
+          const status = (error as any).status;
+          return status >= 500 && failureCount < 2;
+        }
+        return false;
+      },
+      onError: (error) => {
+        showErrorToast(error);
+      },
     },
   },
 });

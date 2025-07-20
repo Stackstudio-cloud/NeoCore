@@ -1,10 +1,15 @@
+import React from "react";
 import { Database, Bell, User, Globe, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import StatusIndicator from "@/components/ui/status-indicator";
 import SoundToggle from "@/components/ui/sound-toggle";
 import DataStream from "@/components/effects/data-stream";
 
-export default function Header() {
+interface HeaderProps {
+  children?: React.ReactNode;
+}
+
+export default function Header({ children }: HeaderProps) {
   return (
     <header className="relative z-50 border-b border-blue-400/20 bg-charcoal/90 backdrop-blur-xl overflow-hidden">
       <DataStream className="opacity-30" lines={3} />
@@ -24,6 +29,13 @@ export default function Header() {
               <span>Latency: 12ms</span>
             </div>
           </div>
+          
+          {/* Search bar or other header content */}
+          {children && (
+            <div className="flex-1 max-w-xl mx-8">
+              {children}
+            </div>
+          )}
           
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2 text-sm text-gray-400">

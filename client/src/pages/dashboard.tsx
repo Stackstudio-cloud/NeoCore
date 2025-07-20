@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import MetricsCarousel from "@/components/dashboard/metrics-carousel";
 import ServiceGrid from "@/components/dashboard/service-grid";
@@ -7,9 +8,10 @@ import { Button } from "@/components/ui/button";
 import { Rocket, FileText, Star } from "lucide-react";
 import MatrixRain from "@/components/effects/matrix-rain";
 import ParticleSystem from "@/components/effects/particle-system";
+import { MetricCardSkeleton } from "@/components/ui/loading-skeleton";
 
 export default function Dashboard() {
-  const { data: projects } = useQuery({
+  const { data: projects, isLoading } = useQuery({
     queryKey: ["/api/projects"],
   });
 
@@ -29,7 +31,15 @@ export default function Dashboard() {
         </p>
         
         {/* Quick Stats Carousel */}
-        <MetricsCarousel />
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <MetricCardSkeleton />
+            <MetricCardSkeleton />
+            <MetricCardSkeleton />
+          </div>
+        ) : (
+          <MetricsCarousel />
+        )}
       </section>
 
       {/* Core Services Grid */}

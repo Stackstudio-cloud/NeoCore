@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import NeonCard from "@/components/ui/neon-card";
 import StatusIndicator from "@/components/ui/status-indicator";
@@ -21,7 +22,7 @@ export default function ServiceGrid() {
       title: "Database",
       subtitle: "PostgreSQL",
       icon: <Database className="w-6 h-6" />,
-      status: "running" as const,
+      status: "online" as const,
       glowColor: "blue" as const,
       features: [
         "Real-time APIs",

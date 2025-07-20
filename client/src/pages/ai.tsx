@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 import NeonCard from "@/components/ui/neon-card";
 import MetricCard from "@/components/ui/metric-card";
 import CodeEditor from "@/components/ui/code-editor";
@@ -15,6 +15,8 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import DevelopmentAssistant from "@/components/ai/development-assistant";
 import MatrixRain from "@/components/effects/matrix-rain";
+import { CardSkeleton } from "@/components/ui/loading-skeleton";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
 
 export default function AIPage() {
   const { toast } = useToast();

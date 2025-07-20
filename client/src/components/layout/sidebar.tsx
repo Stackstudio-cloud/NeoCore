@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, useLocation } from "wouter";
 import { 
   Database, 
@@ -8,9 +9,13 @@ import {
   Brain,
   Home,
   Terminal,
-  ChevronRight
+  ChevronRight,
+  ChevronLeft,
+  Menu
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useUserPreferences } from "@/hooks/use-local-storage";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
@@ -23,12 +28,40 @@ const navigation = [
   { name: "Playground", href: "/playground", icon: Terminal },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  collapsed?: boolean;
+}
+
+export default function Sidebar({ collapsed: propCollapsed }: SidebarProps) {
   const [location] = useLocation();
+  const { preferences, updatePreference } = useUserPreferences();
+  
+  const collapsed = propCollapsed ?? preferences.sidebarCollapsed;
+
+  const toggleSidebar = () => {
+    updatePreference('sidebarCollapsed', !collapsed);
+  };
 
   return (
-    <div className="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 glass-card border-r border-blue-400/20 z-40">
-      <nav className="p-6">
+    <div className={cn(
+      "fixed left-0 top-16 h-[calc(100vh-4rem)] glass-card border-r border-blue-400/20 z-40 transition-all duration-300",
+      collapsed ? "w-16" : "w-64"
+    )}>
+      {/* Toggle button */}
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={toggleSidebar}
+        className="absolute -right-3 top-4 w-6 h-6 rounded-full border border-blue-400/20 bg-background hover:bg-blue-400/10 z-10"
+      >
+        {collapsed ? (
+          <ChevronRight className="w-3 h-3" />
+        ) : (
+          <ChevronLeft className="w-3 h-3" />
+        )}
+      </Button>
+
+      <nav className={cn("p-3", collapsed ? "pt-16" : "pt-12")}>
         <div className="space-y-2">
           {navigation.map((item) => {
             const isActive = location === item.href;
@@ -36,19 +69,32 @@ export default function Sidebar() {
             
             return (
               <Link key={item.name} href={item.href} className={cn(
-                "flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 group",
+                "flex items-center rounded-lg transition-all duration-200 group relative",
+                collapsed ? "justify-center p-3" : "justify-between px-4 py-3",
                 isActive 
                   ? "bg-blue-400/20 text-blue-400 neon-glow" 
                   : "text-gray-300 hover:text-blue-400 hover:bg-blue-400/10"
               )}>
-                <div className="flex items-center space-x-3">
+                <div className={cn(
+                  "flex items-center",
+                  collapsed ? "justify-center" : "space-x-3"
+                )}>
                   <Icon className="w-5 h-5" />
-                  <span className="font-medium">{item.name}</span>
+                  {!collapsed && <span className="font-medium">{item.name}</span>}
                 </div>
-                <ChevronRight className={cn(
-                  "w-4 h-4 transition-transform duration-200",
-                  isActive ? "rotate-90" : "group-hover:translate-x-1"
-                )} />
+                {!collapsed && (
+                  <ChevronRight className={cn(
+                    "w-4 h-4 transition-transform duration-200",
+                    isActive ? "rotate-90" : "group-hover:translate-x-1"
+                  )} />
+                )}
+                
+                {/* Tooltip for collapsed mode */}
+                {collapsed && (
+                  <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-sm rounded opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
+                    {item.name}
+                  </div>
+                )}
               </Link>
             );
           })}
