@@ -19,9 +19,9 @@
 
 <div align="center">
   
-![NeoCore Platform Demo](./assets/demo-animation.svg)
+![NeoCore Platform Demo](./assets/demo-showcase.svg)
   
-*Live dashboard with real-time metrics, AI assistance, and cyberpunk aesthetics*
+*Live dashboard showcasing real-time metrics, AI assistant, code generation, and modern interface*
 
 </div>
 
