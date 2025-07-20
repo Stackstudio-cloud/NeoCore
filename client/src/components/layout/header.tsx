@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import StatusIndicator from "@/components/ui/status-indicator";
 import SoundToggle from "@/components/ui/sound-toggle";
 import DataStream from "@/components/effects/data-stream";
+import Logo from "@/components/ui/logo";
 
 interface HeaderProps {
   children?: React.ReactNode;
@@ -16,9 +17,8 @@ export default function Header({ children }: HeaderProps) {
       <div className="container mx-auto px-6 py-4 relative z-10">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="text-2xl font-bold text-blue-400 animate-pulse-neon flex items-center">
-              <Database className="w-8 h-8 mr-2" />
-              NeoCore
+            <div className="animate-pulse-neon">
+              <Logo size="lg" />
             </div>
             <div className="hidden md:flex items-center space-x-3 text-sm text-gray-400">
               <span>v2.0.1</span>

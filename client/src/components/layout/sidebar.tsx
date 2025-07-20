@@ -16,6 +16,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useUserPreferences } from "@/hooks/use-local-storage";
+import { LogoWithTagline } from "@/components/ui/logo";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
@@ -61,7 +62,14 @@ export default function Sidebar({ collapsed: propCollapsed }: SidebarProps) {
         )}
       </Button>
 
-      <nav className={cn("p-3", collapsed ? "pt-16" : "pt-12")}>
+      {/* Logo section */}
+      {!collapsed && (
+        <div className="p-4 border-b border-gray-700/50 mb-4">
+          <LogoWithTagline size="md" />
+        </div>
+      )}
+      
+      <nav className={cn("p-3", collapsed ? "pt-16" : "pt-4")}>
         <div className="space-y-2">
           {navigation.map((item) => {
             const isActive = location === item.href;

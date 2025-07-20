@@ -9,6 +9,7 @@ import { Rocket, FileText, Star } from "lucide-react";
 import MatrixRain from "@/components/effects/matrix-rain";
 import ParticleSystem from "@/components/effects/particle-system";
 import { MetricCardSkeleton } from "@/components/ui/loading-skeleton";
+import Logo from "@/components/ui/logo";
 
 export default function Dashboard() {
   const { data: projects, isLoading } = useQuery({
@@ -23,9 +24,16 @@ export default function Dashboard() {
       
       {/* Hero Section */}
       <section className="mb-12 text-center relative z-10">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-green-400 to-purple-500 bg-clip-text text-transparent">
+        <div className="flex items-center justify-center mb-6">
+          <Logo 
+            size="xl" 
+            className="mr-4" 
+            textClassName="text-4xl md:text-6xl bg-gradient-to-r from-blue-400 via-green-400 to-purple-500 bg-clip-text text-transparent"
+          />
+        </div>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-gray-300">
           The Future of Backend Development
-        </h1>
+        </h2>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
           NeoCore provides a complete, fully managed infrastructure stack with PostgreSQL, GraphQL, Auth, and Storage
         </p>
