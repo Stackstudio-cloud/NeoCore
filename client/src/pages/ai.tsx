@@ -147,29 +147,29 @@ LIMIT 10;`;
         <MetricCard
           title="Active Assistants"
           value={activeAssistants}
-          icon={<Bot className="w-4 h-4" />}
-          glowColor="purple"
+          icon={Bot}
+          status="success"
         />
         <MetricCard
           title="Embeddings"
           value="15.2K"
-          subtitle="Generated"
-          icon={<Sparkles className="w-4 h-4" />}
-          glowColor="blue"
+          description="Generated"
+          icon={Sparkles}
+          status="success"
         />
         <MetricCard
           title="AI Queries"
           value="3.8K"
-          subtitle="This month"
-          icon={<MessageSquare className="w-4 h-4" />}
-          glowColor="green"
+          description="This month"
+          icon={MessageSquare}
+          status="success"
         />
         <MetricCard
           title="Response Time"
           value="1.2s"
-          subtitle="Average"
-          icon={<Zap className="w-4 h-4" />}
-          glowColor="pink"
+          description="Average"
+          icon={Zap}
+          status="success"
         />
       </div>
 
