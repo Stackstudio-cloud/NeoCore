@@ -49,7 +49,7 @@ export function EnhancedButton({
   const playSound = React.useCallback((type: 'click' | 'success' | 'error') => {
     if (!soundEnabled || typeof window === 'undefined') return;
     
-    // Create audio context for cyberpunk sounds
+    // Create audio context for interaction feedback
     try {
       const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
       const oscillator = audioContext.createOscillator();
@@ -157,7 +157,7 @@ export function EnhancedButton({
         internalState === 'error' && "border-red-400/50",
         // Hover effects
         "hover:shadow-lg hover:scale-105",
-        // Neon glow effect
+        // Modern glow effect
         "hover:shadow-cyan-400/25",
         className
       )}
@@ -174,7 +174,7 @@ export function EnhancedButton({
 }
 
 // Specialized button variants
-export function CyberButton({
+export function ModernButton({
   children,
   glowColor = "cyan",
   ...props
