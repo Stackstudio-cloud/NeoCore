@@ -10,6 +10,14 @@ Preferred communication style: Simple, everyday language. Avoid excessive mentio
 
 ## Recent Changes (Latest Updates)
 
+### Enhanced Documentation and Visual Showcase (2025-01-22)
+- **Comprehensive README Update**: Added live demo link, animated GIF, and detailed screenshots
+- **Automated Screenshot Capture**: Created Puppeteer script to capture all 8 main application pages
+- **Visual Demo Creation**: Generated `neocore-demo.gif` showcasing complete application workflow
+- **Features Showcase Table**: Organized all features with direct screenshot links for easy navigation
+- **Live Demo Integration**: Added working Replit deployment URL for immediate access
+- **Professional Documentation**: Enhanced README structure with better visual hierarchy and organization
+
 ### Critical Stability Fix - MetricCard Render Bug Resolution (2025-01-22)
 - **MetricCard Bug Fixed**: Resolved systematic render failure that caused crashes after 5-10 random page navigations
 - **Icon Prop Standardization**: Fixed all pages to pass component references (e.g., `Video`) instead of JSX elements (`<Video />`) to MetricCard icons

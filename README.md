@@ -18,11 +18,29 @@
 </div>
 
 <div align="center">
-  
-![NeoCore Platform Demo](./assets/demo-showcase.svg)
-  
-*Live dashboard showcasing real-time metrics, AI assistant, code generation, and modern interface*
 
+## 🎬 Live Demo
+
+[![NeoCore Platform Demo](https://via.placeholder.com/800x400/0a0a0f/00d4ff?text=🚀+View+Live+Demo)](https://95696bee-84d9-4837-9bc2-9eeddf5ac3b7-00-1hdffzptk9i7.worf.replit.dev)
+
+**[→ Try the Live Demo](https://95696bee-84d9-4837-9bc2-9eeddf5ac3b7-00-1hdffzptk9i7.worf.replit.dev)**
+
+![NeoCore Platform Demo](./neocore-demo.gif)
+
+*Interactive demo showing all main features: Dashboard, Database Management, GraphQL Playground, Authentication, Storage, Functions, AI Assistant, and API Testing*
+
+</div>
+
+## 📸 Screenshots
+
+<div align="center">
+  <img src="./screenshots/dashboard.png" alt="Dashboard" width="400"/>
+  <img src="./screenshots/database.png" alt="Database Management" width="400"/>
+</div>
+
+<div align="center">
+  <img src="./screenshots/ai.png" alt="AI Assistant" width="400"/>
+  <img src="./screenshots/playground.png" alt="API Playground" width="400"/>
 </div>
 
 ## 🌟 Features
@@ -36,7 +54,7 @@
 - **AI Assistant**: Built-in development assistant for code generation and queries
 - **API Playground**: Full-featured HTTP client for testing APIs
 
-### 🎨 Cyberpunk Interface
+### 🎨 Modern Cyberpunk Interface
 - **Matrix Rain Effects**: Animated falling code background
 - **Particle Systems**: Dynamic particle backgrounds with neon colors
 - **Data Stream Animations**: Real-time data flow effects in header
@@ -50,6 +68,19 @@
 - **Interactive Dashboard**: Metrics carousel and service grid
 - **Responsive Design**: Mobile-optimized cyberpunk interface
 - **Type Safety**: Full TypeScript integration throughout
+
+## ⚡ Key Features Showcase
+
+| Feature | Description | Demo |
+|---------|-------------|------|
+| 🏠 **Dashboard** | Real-time metrics, system status, and service overview | [View →](./screenshots/dashboard.png) |
+| 🗄️ **Database Management** | PostgreSQL interface with connection management | [View →](./screenshots/database.png) |
+| 🔍 **GraphQL Playground** | Interactive API explorer and query builder | [View →](./screenshots/graphql.png) |
+| 🔐 **Authentication** | Multi-provider auth system configuration | [View →](./screenshots/auth.png) |
+| ☁️ **Cloud Storage** | File management and bucket organization | [View →](./screenshots/storage.png) |
+| ⚡ **Serverless Functions** | Deploy and manage cloud functions | [View →](./screenshots/functions.png) |
+| 🤖 **AI Assistant** | AI-powered development help and code generation | [View →](./screenshots/ai.png) |
+| 🧪 **API Playground** | Complete HTTP client for testing APIs | [View →](./screenshots/playground.png) |
 
 ## 🚀 Quick Start
 
@@ -261,6 +292,6 @@ If you have any questions or issues:
 
 **Built with ❤️ by the NeoCore team**
 
-[Demo](https://your-demo-url.replit.app) • [Documentation](https://your-docs-url.com) • [Discord](https://discord.gg/your-invite)
+[🚀 Live Demo](https://95696bee-84d9-4837-9bc2-9eeddf5ac3b7-00-1hdffzptk9i7.worf.replit.dev) • [📚 Documentation](https://github.com/your-username/neocore-platform/wiki) • [💬 Discussions](https://github.com/your-username/neocore-platform/discussions)
 
 </div>
