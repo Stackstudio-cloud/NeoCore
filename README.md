@@ -27,7 +27,7 @@
 
 ![NeoCore Platform Demo](./neocore-demo.gif)
 
-*Interactive demo showing all main features: Dashboard, Database Management, GraphQL Playground, Authentication, Storage, Functions, AI Assistant, and API Testing*
+*Slow-paced demo showing all main features - each page displays for 5 seconds so you can see the details: Dashboard, Database Management, GraphQL Playground, Authentication, Storage, Functions, AI Assistant, and API Testing*
 
 </div>
 
