@@ -10,7 +10,7 @@ import {
   type Metric, type InsertMetric
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, and } from "drizzle-orm";
+import { eq, desc, and } from "drizzle-orm";
 
 export interface IStorage {
   // Projects
@@ -53,6 +53,14 @@ export interface IStorage {
   // Metrics
   getMetrics(projectId: number, type?: string): Promise<Metric[]>;
   addMetric(metric: InsertMetric): Promise<Metric>;
+
+  // Enhanced Features
+  getUser?(id: string): Promise<User | undefined>;
+  createUser?(user: InsertUser): Promise<User>;
+  getConversations?(userId: string): Promise<AIConversation[]>;
+  createConversation?(conversation: Partial<AIConversation>): Promise<AIConversation>;
+  getProjectDatabases?(projectId: number): Promise<ProjectDatabase[]>;
+  createProjectDatabase?(database: Partial<ProjectDatabase>): Promise<ProjectDatabase>;
 }
 
 export class MemStorage implements IStorage {

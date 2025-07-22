@@ -11,7 +11,12 @@ import {
   Terminal,
   ChevronRight,
   ChevronLeft,
-  Menu
+  Menu,
+  BarChart3,
+  TestTube,
+  Users,
+  Layers,
+  CreditCard
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -19,7 +24,7 @@ import { useUserPreferences } from "@/hooks/use-local-storage";
 import { LogoWithTagline } from "@/components/ui/logo";
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: Home },
+  { name: "Dashboard", href: "/", icon: BarChart3 },
   { name: "Database", href: "/database", icon: Database },
   { name: "GraphQL", href: "/graphql", icon: Code },
   { name: "Auth", href: "/auth", icon: Shield },
@@ -27,6 +32,35 @@ const navigation = [
   { name: "Functions", href: "/functions", icon: Zap },
   { name: "AI", href: "/ai", icon: Brain },
   { name: "Playground", href: "/playground", icon: Terminal },
+];
+
+const enhancedSections = [
+  {
+    title: "AI & Assistants",
+    items: [
+      { name: "Specialized AI", href: "/ai/specialized", icon: Brain },
+    ]
+  },
+  {
+    title: "Developer Tools", 
+    items: [
+      { name: "DB Manager", href: "/tools/database-manager", icon: Database },
+      { name: "Testing", href: "/tools/testing", icon: TestTube },
+    ]
+  },
+  {
+    title: "Enterprise",
+    items: [
+      { name: "Teams", href: "/enterprise/teams", icon: Users },
+    ]
+  },
+  {
+    title: "Templates & Business",
+    items: [
+      { name: "Templates", href: "/templates", icon: Layers },
+      { name: "Pricing", href: "/business/pricing", icon: CreditCard },
+    ]
+  }
 ];
 
 interface SidebarProps {
@@ -70,7 +104,8 @@ export default function Sidebar({ collapsed: propCollapsed }: SidebarProps) {
       )}
       
       <nav className={cn("p-3", collapsed ? "pt-16" : "pt-4")}>
-        <div className="space-y-2">
+        {/* Main Navigation */}
+        <div className="space-y-2 mb-6">
           {navigation.map((item) => {
             const isActive = location === item.href;
             const Icon = item.icon;
@@ -107,6 +142,39 @@ export default function Sidebar({ collapsed: propCollapsed }: SidebarProps) {
             );
           })}
         </div>
+        
+        {/* Enhanced Sections */}
+        {!collapsed && enhancedSections.map((section) => (
+          <div key={section.title} className="mb-6">
+            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-4">
+              {section.title}
+            </h3>
+            <div className="space-y-2">
+              {section.items.map((item) => {
+                const isActive = location === item.href;
+                const Icon = item.icon;
+                
+                return (
+                  <Link key={item.name} href={item.href} className={cn(
+                    "flex items-center rounded-lg transition-all duration-200 group px-4 py-2",
+                    isActive 
+                      ? "bg-purple-400/20 text-purple-400 neon-glow" 
+                      : "text-gray-400 hover:text-purple-400 hover:bg-purple-400/10"
+                  )}>
+                    <div className="flex items-center space-x-3">
+                      <Icon className="w-4 h-4" />
+                      <span className="text-sm font-medium">{item.name}</span>
+                    </div>
+                    <ChevronRight className={cn(
+                      "w-3 h-3 ml-auto transition-transform duration-200",
+                      isActive ? "rotate-90" : "group-hover:translate-x-1"
+                    )} />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </nav>
     </div>
   );

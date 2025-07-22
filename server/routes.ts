@@ -286,5 +286,119 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Enhanced API Routes
+  
+  // AI Routes
+  app.use('/api/ai', async (req, res, next) => {
+    try {
+      // Handle AI conversations
+      if (req.path === '/conversations' && req.method === 'GET') {
+        const conversations = [
+          {
+            id: '1',
+            assistantType: 'general',
+            title: 'Setting up a new project',
+            messages: [],
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }
+        ];
+        return res.json(conversations);
+      }
+      
+      if (req.path === '/conversations' && req.method === 'POST') {
+        const { assistantType } = req.body;
+        const conversation = {
+          id: Date.now().toString(),
+          assistantType,
+          title: 'New Conversation',
+          messages: [],
+          createdAt: new Date(),
+          updatedAt: new Date()
+        };
+        return res.json(conversation);
+      }
+      
+      if (req.path === '/chat' && req.method === 'POST') {
+        const { assistantType, message, conversationId } = req.body;
+        const response = {
+          message: `I'm ${assistantType} assistant. I can help you with ${message}. This is a mock response for the demo.`,
+          conversationId: conversationId || Date.now().toString(),
+          timestamp: new Date()
+        };
+        return res.json(response);
+      }
+      
+      next();
+    } catch (error) {
+      res.status(500).json({ message: 'AI service error' });
+    }
+  });
+
+  // Database Routes
+  app.use('/api/databases', async (req, res, next) => {
+    try {
+      if (req.path === '/connections' && req.method === 'GET') {
+        const connections = [
+          {
+            id: 1,
+            name: 'Main PostgreSQL',
+            provider: 'postgresql',
+            connectionString: 'postgresql://user:***@localhost:5432/neocore',
+            status: 'connected',
+            config: {},
+            createdAt: new Date().toISOString()
+          }
+        ];
+        return res.json(connections);
+      }
+      
+      if (req.path === '/connections' && req.method === 'POST') {
+        const { name, provider, connectionString } = req.body;
+        const connection = {
+          id: Date.now(),
+          name,
+          provider,
+          connectionString,
+          status: 'disconnected',
+          config: {},
+          createdAt: new Date().toISOString()
+        };
+        return res.json(connection);
+      }
+      
+      next();
+    } catch (error) {
+      res.status(500).json({ message: 'Database service error' });
+    }
+  });
+
+  // Business Routes
+  app.use('/api/user', async (req, res, next) => {
+    try {
+      if (req.path === '/subscription' && req.method === 'GET') {
+        const subscription = {
+          active: true,
+          tier: 'pro',
+          currentPeriodEnd: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+          cancelAtPeriodEnd: false
+        };
+        return res.json(subscription);
+      }
+      
+      if (req.path === '/upgrade' && req.method === 'POST') {
+        const { tierId, isYearly } = req.body;
+        if (tierId === 'enterprise') {
+          return res.json({ contactEmail: 'sales@neocore.one' });
+        }
+        return res.json({ tier: tierId, isYearly });
+      }
+      
+      next();
+    } catch (error) {
+      res.status(500).json({ message: 'Business service error' });
+    }
+  });
+
   return httpServer;
 }

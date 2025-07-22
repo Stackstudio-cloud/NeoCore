@@ -21,6 +21,14 @@ import Functions from "@/pages/functions";
 import AI from "@/pages/ai";
 import Playground from "@/pages/playground";
 import NotFound from "@/pages/not-found";
+
+// Enhanced Pages
+import SpecializedAssistants from "@/pages/ai/specialized-assistants";
+import DatabaseManager from "@/pages/tools/database-manager";
+import TestingSuite from "@/pages/tools/testing-suite";
+import TeamManagement from "@/pages/enterprise/team-management";
+import ProjectScaffolding from "@/pages/templates/project-scaffolding";
+import BusinessPricing from "@/pages/business/pricing";
 import { Database as DatabaseIcon, Code, Shield, Cloud, Zap, Brain, Terminal } from "lucide-react";
 
 // Search results data
@@ -32,9 +40,12 @@ const searchResults = [
   { id: '5', title: 'Functions', description: 'Serverless functions', category: 'Pages', href: '/functions', icon: Zap },
   { id: '6', title: 'AI Assistant', description: 'AI-powered development help', category: 'Pages', href: '/ai', icon: Brain },
   { id: '7', title: 'Playground', description: 'API testing playground', category: 'Pages', href: '/playground', icon: Terminal },
-  { id: '8', title: 'Create Project', description: 'Start a new project', category: 'Commands', href: '/database' },
-  { id: '9', title: 'Deploy Function', description: 'Deploy serverless function', category: 'Commands', href: '/functions' },
-  { id: '10', title: 'Generate Code', description: 'AI code generation', category: 'Commands', href: '/ai' },
+  { id: '8', title: 'Specialized AI', description: 'Expert AI assistants', category: 'Pages', href: '/ai/specialized', icon: Brain },
+  { id: '9', title: 'Database Manager', description: 'Advanced database tools', category: 'Tools', href: '/tools/database-manager', icon: DatabaseIcon },
+  { id: '10', title: 'Testing Suite', description: 'Comprehensive testing tools', category: 'Tools', href: '/tools/testing', icon: Code },
+  { id: '11', title: 'Team Management', description: 'Enterprise collaboration', category: 'Enterprise', href: '/enterprise/teams', icon: Shield },
+  { id: '12', title: 'Project Templates', description: 'Scaffold new projects', category: 'Templates', href: '/templates', icon: Cloud },
+  { id: '13', title: 'Pricing', description: 'Business plans and pricing', category: 'Business', href: '/business/pricing', icon: Zap },
 ];
 
 function Router() {
@@ -93,7 +104,13 @@ function Router() {
                 <Route path="/storage" component={Storage} />
                 <Route path="/functions" component={Functions} />
                 <Route path="/ai" component={AI} />
+                <Route path="/ai/specialized" component={SpecializedAssistants} />
                 <Route path="/playground" component={Playground} />
+                <Route path="/tools/database-manager" component={DatabaseManager} />
+                <Route path="/tools/testing" component={TestingSuite} />
+                <Route path="/enterprise/teams" component={TeamManagement} />
+                <Route path="/templates" component={ProjectScaffolding} />
+                <Route path="/business/pricing" component={BusinessPricing} />
                 <Route component={NotFound} />
               </Switch>
             </ErrorBoundary>
