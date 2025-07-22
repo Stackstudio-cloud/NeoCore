@@ -39,6 +39,7 @@ const enhancedSections = [
     title: "AI & Assistants",
     items: [
       { name: "Specialized AI", href: "/ai/specialized", icon: Brain },
+      { name: "Code Suggestions", href: "/ai/suggestions", icon: Zap },
     ]
   },
   {

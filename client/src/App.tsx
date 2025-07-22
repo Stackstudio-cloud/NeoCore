@@ -30,6 +30,7 @@ import TeamManagement from "@/pages/enterprise/team-management";
 import ProjectScaffolding from "@/pages/templates/project-scaffolding";
 import BusinessPricing from "@/pages/business/pricing";
 import EnhancedFeatures from "@/pages/EnhancedFeatures";
+import CodeSuggestions from "@/pages/CodeSuggestions";
 import { Database as DatabaseIcon, Code, Shield, Cloud, Zap, Brain, Terminal } from "lucide-react";
 
 // Search results data
@@ -113,6 +114,7 @@ function Router() {
                 <Route path="/templates" component={ProjectScaffolding} />
                 <Route path="/business/pricing" component={BusinessPricing} />
                 <Route path="/enhanced" component={EnhancedFeatures} />
+                <Route path="/ai/suggestions" component={CodeSuggestions} />
                 <Route component={NotFound} />
               </Switch>
             </ErrorBoundary>

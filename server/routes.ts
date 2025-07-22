@@ -15,6 +15,7 @@ import {
   summarizeDocument,
   generateImage
 } from "./lib/gemini";
+import aiSuggestionsRoutes from "./routes/ai-suggestions";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
@@ -423,6 +424,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to fetch edge regions" });
     }
   });
+
+  // AI suggestions routes
+  app.use('/api/ai', aiSuggestionsRoutes);
 
   return httpServer;
 }

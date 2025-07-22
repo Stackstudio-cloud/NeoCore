@@ -153,6 +153,34 @@ export const aiCodeGeneration = pgTable("ai_code_generation", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const codeSuggestions = pgTable("code_suggestions", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  code: text("code").notNull(),
+  language: text("language").notNull(),
+  framework: text("framework").notNull(),
+  difficulty: text("difficulty").notNull(), // beginner, intermediate, advanced
+  category: text("category").notNull(),
+  tags: jsonb("tags").default([]),
+  rating: integer("rating").notNull().default(0),
+  usageCount: integer("usage_count").notNull().default(0),
+  aiGenerated: boolean("ai_generated").notNull().default(false),
+  contextual: boolean("contextual").notNull().default(false),
+  context: text("context"), // The context used to generate this suggestion
+  projectId: integer("project_id"), // Optional, if suggestion is project-specific
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const suggestionRatings = pgTable("suggestion_ratings", {
+  id: serial("id").primaryKey(),
+  suggestionId: integer("suggestion_id").notNull(),
+  userId: text("user_id"), // From auth system
+  rating: text("rating").notNull(), // 'up' or 'down'
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 // Session storage table.
 // (IMPORTANT) This table is mandatory for Replit Auth, don't drop it.
 export const sessions = pgTable(
@@ -223,6 +251,12 @@ export type InsertDatabaseConnection = typeof databaseConnections.$inferInsert;
 
 export type AiCodeGeneration = typeof aiCodeGeneration.$inferSelect;
 export type InsertAiCodeGeneration = typeof aiCodeGeneration.$inferInsert;
+
+export type CodeSuggestion = typeof codeSuggestions.$inferSelect;
+export type InsertCodeSuggestion = typeof codeSuggestions.$inferInsert;
+
+export type SuggestionRating = typeof suggestionRatings.$inferSelect;
+export type InsertSuggestionRating = typeof suggestionRatings.$inferInsert;
 
 // Insert schemas using drizzle-zod
 export const insertProjectSchema = createInsertSchema(projects);
