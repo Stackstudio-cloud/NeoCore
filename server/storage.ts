@@ -355,6 +355,7 @@ export class MemStorage implements IStorage {
     const newMetric: Metric = { 
       ...metric, 
       id, 
+      value: metric.value || 0,
       timestamp: new Date(),
       metadata: metric.metadata || {}
     };
@@ -493,6 +494,26 @@ export class DatabaseStorage implements IStorage {
   async addMetric(metric: InsertMetric): Promise<Metric> {
     const [newMetric] = await db.insert(metrics).values(metric).returning();
     return newMetric;
+  }
+
+  // Enhanced Features - Database Branching
+  async getDatabaseBranches(databaseId: number): Promise<DatabaseBranch[]> {
+    return await db.select().from(databaseBranches).where(eq(databaseBranches.databaseId, databaseId));
+  }
+
+  async createDatabaseBranch(branch: InsertDatabaseBranch): Promise<DatabaseBranch> {
+    const [newBranch] = await db.insert(databaseBranches).values(branch).returning();
+    return newBranch;
+  }
+
+  async mergeDatabaseBranch(branchId: number, targetBranchId: number): Promise<boolean> {
+    // Implementation for merging database branches
+    return true;
+  }
+
+  // Enhanced Features - Edge Computing
+  async getEdgeRegions(): Promise<EdgeRegion[]> {
+    return await db.select().from(edgeRegions);
   }
 }
 

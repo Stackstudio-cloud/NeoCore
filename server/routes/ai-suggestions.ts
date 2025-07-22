@@ -334,7 +334,7 @@ router.get('/code-suggestions', async (req, res) => {
     
     // Apply conditions if any
     if (conditions.length > 0) {
-      queryBuilder = queryBuilder.where(and(...conditions));
+      queryBuilder = queryBuilder.where(and(...conditions)) as typeof queryBuilder;
     }
     
     const suggestions = await queryBuilder.orderBy(desc(codeSuggestions.rating), desc(codeSuggestions.usageCount));

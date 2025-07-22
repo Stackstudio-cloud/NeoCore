@@ -73,7 +73,7 @@ function Router() {
     setFilteredResults(filtered);
   };
   
-  const handleSearchSelect = (result: typeof searchResults[0]) => {
+  const handleSearchSelect = (result: { id: string; title: string; description?: string; category: string; href: string; icon?: React.ComponentType<{ className?: string }> }) => {
     navigate(result.href);
   };
 
