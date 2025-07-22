@@ -47,8 +47,8 @@ export default function StoragePage() {
     return <div className="animate-pulse">Loading storage...</div>;
   }
 
-  const totalFiles = buckets?.reduce((sum, bucket) => sum + bucket.fileCount, 0) || 0;
-  const totalSize = buckets?.reduce((sum, bucket) => sum + bucket.totalSize, 0) || 0;
+  const totalFiles = Array.isArray(buckets) ? buckets.reduce((sum: any, bucket: any) => sum + bucket.fileCount, 0) : 0;
+  const totalSize = Array.isArray(buckets) ? buckets.reduce((sum: any, bucket: any) => sum + bucket.totalSize, 0) : 0;
 
   return (
     <div className="animate-slide-left">
@@ -73,28 +73,28 @@ export default function StoragePage() {
         <MetricCard
           title="Total Files"
           value={totalFiles.toLocaleString()}
-          icon={<File className="w-4 h-4" />}
-          glowColor="pink"
+          icon={File}
+          status="success"
         />
         <MetricCard
           title="Storage Used"
           value={`${(totalSize / (1024 * 1024)).toFixed(1)} MB`}
-          icon={<Cloud className="w-4 h-4" />}
-          glowColor="blue"
+          icon={Cloud}
+          status="success"
         />
         <MetricCard
           title="CDN Requests"
           value="45.2K"
-          subtitle="This month"
-          icon={<Image className="w-4 h-4" />}
-          glowColor="green"
+          description="This month"
+          icon={Image}
+          status="success"
         />
         <MetricCard
           title="Bandwidth"
           value="1.2 GB"
-          subtitle="This month"
-          icon={<Video className="w-4 h-4" />}
-          glowColor="purple"
+          description="This month"
+          icon={Video}
+          status="success"
         />
       </div>
 
@@ -135,12 +135,12 @@ export default function StoragePage() {
             {/* Existing Buckets */}
             <NeonCard title="Storage Buckets" glowColor="blue">
               <div className="space-y-4">
-                {buckets?.length === 0 ? (
+                {Array.isArray(buckets) && buckets.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">
                     No storage buckets found. Create your first bucket above.
                   </div>
                 ) : (
-                  buckets?.map((bucket) => (
+                  Array.isArray(buckets) && buckets.map((bucket: any) => (
                     <div 
                       key={bucket.id}
                       className="flex items-center justify-between p-6 rounded-lg bg-slate-900/50 border border-blue-400/20"

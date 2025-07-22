@@ -108,16 +108,16 @@ INSERT INTO users (name, email, profile) VALUES
             <MetricCard
               title="Active Connections"
               value={(database.metrics as any)?.connections || 0}
-              subtitle="Current"
-              icon={<Activity className="w-4 h-4" />}
-              glowColor="blue"
+              description="Current"
+              icon={Activity}
+              status="success"
             />
             <MetricCard
               title="Queries/min"
               value={`${((database.metrics as any)?.queries_per_min / 1000).toFixed(1)}K` || "0"}
-              subtitle="Average"
-              icon={<Database className="w-4 h-4" />}
-              glowColor="green"
+              description="Average"
+              icon={Database}
+              status="success"
             />
           </div>
         </div>
