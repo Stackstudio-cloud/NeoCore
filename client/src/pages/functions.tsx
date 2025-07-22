@@ -89,8 +89,8 @@ async function processData(name) {
     return <div className="animate-pulse">Loading functions...</div>;
   }
 
-  const totalInvocations = functions?.reduce((sum, func) => sum + func.invocations, 0) || 0;
-  const activeFunctions = functions?.filter(func => func.status === "deployed").length || 0;
+  const totalInvocations = Array.isArray(functions) ? functions.reduce((sum: any, func: any) => sum + func.invocations, 0) : 0;
+  const activeFunctions = Array.isArray(functions) ? functions.filter((func: any) => func.status === "deployed").length : 0;
 
   return (
     <div className="animate-slide-left">
@@ -115,29 +115,29 @@ async function processData(name) {
         <MetricCard
           title="Active Functions"
           value={activeFunctions}
-          icon={<Zap className="w-4 h-4" />}
-          glowColor="green"
+          icon={Zap}
+          status="success"
         />
         <MetricCard
           title="Total Invocations"
           value={totalInvocations.toLocaleString()}
-          subtitle="All time"
-          icon={<Activity className="w-4 h-4" />}
-          glowColor="blue"
+          description="All time"
+          icon={Activity}
+          status="success"
         />
         <MetricCard
           title="Avg Duration"
           value="145ms"
-          subtitle="Last 24h"
-          icon={<Clock className="w-4 h-4" />}
-          glowColor="purple"
+          description="Last 24h"
+          icon={Clock}
+          status="success"
         />
         <MetricCard
           title="Error Rate"
           value="0.2%"
-          subtitle="Last 7 days"
-          icon={<Terminal className="w-4 h-4" />}
-          glowColor="pink"
+          description="Last 7 days"
+          icon={Terminal}
+          status="success"
         />
       </div>
 
@@ -194,12 +194,12 @@ async function processData(name) {
             {/* Existing Functions */}
             <NeonCard title="Deployed Functions" glowColor="blue">
               <div className="space-y-4">
-                {functions?.length === 0 ? (
+                {Array.isArray(functions) && functions.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">
                     No functions deployed yet. Create your first function above.
                   </div>
                 ) : (
-                  functions?.map((func) => (
+                  Array.isArray(functions) && functions.map((func: any) => (
                     <div 
                       key={func.id}
                       className="flex items-center justify-between p-6 rounded-lg bg-slate-900/50 border border-blue-400/20"
