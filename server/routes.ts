@@ -403,5 +403,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Enhanced Features API Routes - Database Branching (Neon-style)
+  app.get('/api/databases/:id/branches', async (req, res) => {
+    try {
+      const databaseId = parseInt(req.params.id);
+      const branches = await storage.getDatabaseBranches?.(databaseId) || [];
+      res.json(branches);
+    } catch (error: any) {
+      res.status(500).json({ message: "Failed to fetch database branches" });
+    }
+  });
+
+  // Edge Computing Regions (Fly.io-style)
+  app.get('/api/edge-regions', async (req, res) => {
+    try {
+      const regions = await storage.getEdgeRegions?.() || [];
+      res.json(regions);
+    } catch (error: any) {
+      res.status(500).json({ message: "Failed to fetch edge regions" });
+    }
+  });
+
   return httpServer;
 }

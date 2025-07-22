@@ -60,6 +60,12 @@ const enhancedSections = [
       { name: "Templates", href: "/templates", icon: Layers },
       { name: "Pricing", href: "/business/pricing", icon: CreditCard },
     ]
+  },
+  {
+    title: "Advanced",
+    items: [
+      { name: "Enhanced Features", href: "/enhanced", icon: Zap },
+    ]
   }
 ];
 
