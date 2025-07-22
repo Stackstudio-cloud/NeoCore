@@ -2,7 +2,10 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
-import { insertProjectSchema, insertDatabaseSchema, insertStorageBucketSchema, insertFunctionSchema, insertAiAssistantSchema } from "@shared/schema";
+import { 
+  insertProjectSchema, insertDatabaseSchema, insertStorageBucketSchema, insertFunctionSchema, insertAiAssistantSchema,
+  insertDatabaseBranchSchema, insertCollaborationSessionSchema, insertProjectCanvasNodeSchema, insertAiCodeGenerationSchema
+} from "@shared/schema";
 import { 
   generateCode, 
   generateSQL, 
@@ -51,7 +54,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const projects = await storage.getProjects();
       res.json(projects);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: "Failed to fetch projects" });
     }
   });
@@ -64,7 +67,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Project not found" });
       }
       res.json(project);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: "Failed to fetch project" });
     }
   });
@@ -74,7 +77,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const projectData = insertProjectSchema.parse(req.body);
       const project = await storage.createProject(projectData);
       res.status(201).json(project);
-    } catch (error) {
+    } catch (error: any) {
       res.status(400).json({ message: "Invalid project data" });
     }
   });
@@ -85,7 +88,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const projectId = parseInt(req.params.projectId);
       const databases = await storage.getDatabases(projectId);
       res.json(databases);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: "Failed to fetch databases" });
     }
   });
@@ -96,7 +99,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const databaseData = insertDatabaseSchema.parse({ ...req.body, projectId });
       const database = await storage.createDatabase(databaseData);
       res.status(201).json(database);
-    } catch (error) {
+    } catch (error: any) {
       res.status(400).json({ message: "Invalid database data" });
     }
   });
@@ -107,7 +110,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const projectId = parseInt(req.params.projectId);
       const providers = await storage.getAuthProviders(projectId);
       res.json(providers);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: "Failed to fetch auth providers" });
     }
   });
@@ -121,7 +124,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Auth provider not found" });
       }
       res.json(provider);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: "Failed to update auth provider" });
     }
   });
@@ -132,7 +135,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const projectId = parseInt(req.params.projectId);
       const buckets = await storage.getStorageBuckets(projectId);
       res.json(buckets);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: "Failed to fetch storage buckets" });
     }
   });
@@ -143,7 +146,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const bucketData = insertStorageBucketSchema.parse({ ...req.body, projectId });
       const bucket = await storage.createStorageBucket(bucketData);
       res.status(201).json(bucket);
-    } catch (error) {
+    } catch (error: any) {
       res.status(400).json({ message: "Invalid storage bucket data" });
     }
   });
@@ -154,7 +157,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const projectId = parseInt(req.params.projectId);
       const functions = await storage.getFunctions(projectId);
       res.json(functions);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: "Failed to fetch functions" });
     }
   });
@@ -165,7 +168,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const functionData = insertFunctionSchema.parse({ ...req.body, projectId });
       const func = await storage.createFunction(functionData);
       res.status(201).json(func);
-    } catch (error) {
+    } catch (error: any) {
       res.status(400).json({ message: "Invalid function data" });
     }
   });
@@ -176,7 +179,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const projectId = parseInt(req.params.projectId);
       const assistants = await storage.getAiAssistants(projectId);
       res.json(assistants);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: "Failed to fetch AI assistants" });
     }
   });
@@ -187,7 +190,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const assistantData = insertAiAssistantSchema.parse({ ...req.body, projectId });
       const assistant = await storage.createAiAssistant(assistantData);
       res.status(201).json(assistant);
-    } catch (error) {
+    } catch (error: any) {
       res.status(400).json({ message: "Invalid AI assistant data" });
     }
   });
@@ -199,7 +202,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const type = req.query.type as string;
       const metrics = await storage.getMetrics(projectId, type);
       res.json(metrics);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: "Failed to fetch metrics" });
     }
   });
@@ -210,7 +213,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { prompt, language, context } = req.body;
       const result = await generateCode({ prompt, language, context });
       res.json(result);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
@@ -220,7 +223,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { naturalLanguage, schema, context } = req.body;
       const result = await generateSQL({ naturalLanguage, schema, context });
       res.json(result);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
@@ -230,7 +233,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { text } = req.body;
       const result = await analyzeSentiment(text);
       res.json(result);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
@@ -240,7 +243,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { imageBase64, prompt } = req.body;
       const result = await analyzeImage(imageBase64, prompt);
       res.json(result);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
@@ -250,7 +253,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { prompt } = req.body;
       const result = await generateImage(prompt);
       res.json(result);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
@@ -281,7 +284,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { text, maxLength } = req.body;
       const result = await summarizeDocument(text, maxLength);
       res.json(result);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
   });
@@ -330,7 +333,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       next();
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: 'AI service error' });
     }
   });
@@ -368,7 +371,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       next();
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: 'Database service error' });
     }
   });
@@ -395,7 +398,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       next();
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: 'Business service error' });
     }
   });

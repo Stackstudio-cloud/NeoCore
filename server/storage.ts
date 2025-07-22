@@ -1,5 +1,6 @@
 import {
   projects, databases, apiEndpoints, authProviders, storageBuckets, functions, aiAssistants, metrics,
+  databaseBranches, collaborationSessions, projectCanvas, edgeRegions, databaseConnections, aiCodeGeneration, users,
   type Project, type InsertProject,
   type Database, type InsertDatabase,
   type ApiEndpoint, type InsertApiEndpoint,
@@ -7,7 +8,14 @@ import {
   type StorageBucket, type InsertStorageBucket,
   type Function, type InsertFunction,
   type AiAssistant, type InsertAiAssistant,
-  type Metric, type InsertMetric
+  type Metric, type InsertMetric,
+  type DatabaseBranch, type InsertDatabaseBranch,
+  type CollaborationSession, type InsertCollaborationSession,
+  type ProjectCanvasNode, type InsertProjectCanvasNode,
+  type EdgeRegion, type InsertEdgeRegion,
+  type DatabaseConnection, type InsertDatabaseConnection,
+  type AiCodeGeneration, type InsertAiCodeGeneration,
+  type User, type UpsertUser
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and } from "drizzle-orm";
@@ -54,13 +62,34 @@ export interface IStorage {
   getMetrics(projectId: number, type?: string): Promise<Metric[]>;
   addMetric(metric: InsertMetric): Promise<Metric>;
 
-  // Enhanced Features
+  // Enhanced Features - Database Branching
+  getDatabaseBranches?(databaseId: number): Promise<DatabaseBranch[]>;
+  createDatabaseBranch?(branch: InsertDatabaseBranch): Promise<DatabaseBranch>;
+  mergeDatabaseBranch?(branchId: number, targetBranchId: number): Promise<boolean>;
+  
+  // Enhanced Features - Real-time Collaboration
+  getCollaborationSessions?(projectId: number): Promise<CollaborationSession[]>;
+  createCollaborationSession?(session: InsertCollaborationSession): Promise<CollaborationSession>;
+  updateCollaborationSession?(id: number, updates: Partial<CollaborationSession>): Promise<CollaborationSession | undefined>;
+  
+  // Enhanced Features - Visual Canvas
+  getProjectCanvas?(projectId: number): Promise<ProjectCanvasNode[]>;
+  createCanvasNode?(node: InsertProjectCanvasNode): Promise<ProjectCanvasNode>;
+  updateCanvasNode?(id: number, updates: Partial<ProjectCanvasNode>): Promise<ProjectCanvasNode | undefined>;
+  
+  // Enhanced Features - Edge Computing
+  getEdgeRegions?(): Promise<EdgeRegion[]>;
+  getDatabaseConnections?(databaseId: number): Promise<DatabaseConnection[]>;
+  createDatabaseConnection?(connection: InsertDatabaseConnection): Promise<DatabaseConnection>;
+  
+  // Enhanced Features - AI Code Generation
+  getAiCodeGeneration?(projectId: number): Promise<AiCodeGeneration[]>;
+  createAiCodeGeneration?(generation: InsertAiCodeGeneration): Promise<AiCodeGeneration>;
+  updateAiCodeGeneration?(id: number, updates: Partial<AiCodeGeneration>): Promise<AiCodeGeneration | undefined>;
+
+  // User operations for Replit Auth
   getUser?(id: string): Promise<User | undefined>;
-  createUser?(user: InsertUser): Promise<User>;
-  getConversations?(userId: string): Promise<AIConversation[]>;
-  createConversation?(conversation: Partial<AIConversation>): Promise<AIConversation>;
-  getProjectDatabases?(projectId: number): Promise<ProjectDatabase[]>;
-  createProjectDatabase?(database: Partial<ProjectDatabase>): Promise<ProjectDatabase>;
+  upsertUser?(user: UpsertUser): Promise<User>;
 }
 
 export class MemStorage implements IStorage {
@@ -323,7 +352,12 @@ export class MemStorage implements IStorage {
 
   async addMetric(metric: InsertMetric): Promise<Metric> {
     const id = this.currentId++;
-    const newMetric: Metric = { ...metric, id, timestamp: new Date() };
+    const newMetric: Metric = { 
+      ...metric, 
+      id, 
+      timestamp: new Date(),
+      metadata: metric.metadata || {}
+    };
     this.metrics.set(id, newMetric);
     return newMetric;
   }
