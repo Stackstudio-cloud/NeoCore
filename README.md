@@ -1,7 +1,7 @@
 # NeoCore Platform
 
 <div align="center">
-  <img src="./assets/neocore-logo.svg" alt="NeoCore Platform" width="300"/>
+  <img src=".[/assets/neocore.svg](NEOCORE.png)" alt="NeoCore Platform" width="300"/>
   
   > A modern, AI-powered backend development platform built with React, Express.js, and PostgreSQL
 </div>
@@ -19,11 +19,11 @@
 
 <div align="center">
 
-## 🎬 Live Demo
+## 🎬 Live Demo @ https://neocore.one
 
 [![NeoCore Platform Demo](https://via.placeholder.com/800x400/0a0a0f/00d4ff?text=🚀+View+Live+Demo)](https://95696bee-84d9-4837-9bc2-9eeddf5ac3b7-00-1hdffzptk9i7.worf.replit.dev)
 
-**[→ Try the Live Demo](https://95696bee-84d9-4837-9bc2-9eeddf5ac3b7-00-1hdffzptk9i7.worf.replit.dev)**
+**[→ Try the Live Demo]((https://neocore.one))**
 
 ![NeoCore Platform Demo](./neocore-demo.gif)
 
@@ -31,17 +31,6 @@
 
 </div>
 
-## 📸 Screenshots
-
-<div align="center">
-  <img src="./screenshots/dashboard.png" alt="Dashboard" width="400"/>
-  <img src="./screenshots/database.png" alt="Database Management" width="400"/>
-</div>
-
-<div align="center">
-  <img src="./screenshots/ai.png" alt="AI Assistant" width="400"/>
-  <img src="./screenshots/playground.png" alt="API Playground" width="400"/>
-</div>
 
 ## 🌟 Features
 
@@ -88,36 +77,6 @@
 - Node.js 18+ 
 - PostgreSQL database (we recommend [Neon](https://neon.tech/))
 
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/neocore-platform.git
-   cd neocore-platform
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   # Create .env file
-   echo "DATABASE_URL=your_postgresql_connection_string" > .env
-   ```
-
-4. **Initialize the database**
-   ```bash
-   npm run db:push
-   ```
-
-5. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-The application will be available at `http://localhost:5000`
 
 ## 📁 Project Structure
 
@@ -207,14 +166,6 @@ The application uses a cyberpunk color scheme defined in `client/src/index.css`.
   --glass-bg: rgba(10, 10, 15, 0.8);
 }
 ```
-
-### Adding New Features
-1. Define database schema in `shared/schema.ts`
-2. Add API routes in `server/routes.ts`
-3. Implement storage methods in `server/storage.ts`
-4. Create React components in `client/src/components/`
-5. Add pages to `client/src/pages/` and register in `App.tsx`
-
 ## 🔒 Security Features
 
 - **Input Validation**: Zod schema validation on all API endpoints
@@ -236,20 +187,6 @@ The application uses a PostgreSQL database with the following main tables:
 - **ai_assistants** - AI assistant configurations
 - **metrics** - Performance and usage metrics
 
-## 🚢 Deployment
-
-### Replit Deployment
-1. Fork this repository to your GitHub account
-2. Import to Replit using the GitHub integration
-3. Set the `DATABASE_URL` environment variable
-4. Click "Run" to start the application
-
-### Manual Deployment
-1. Build the application: `npm run build`
-2. Set environment variables
-3. Start the production server: `npm start`
-
-The application serves both the frontend and API from a single Express.js server.
 
 ## 🤝 Contributing
 
@@ -281,6 +218,7 @@ See our [ROADMAP.md](ROADMAP.md) for planned features and improvements including
 ## 📞 Support
 
 If you have any questions or issues:
+https://neocore.one demo and contact
 
 1. Check the [Issues](https://github.com/your-username/neocore-platform/issues) page
 2. Create a new issue with a detailed description
