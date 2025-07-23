@@ -1,7 +1,7 @@
 # NeoCore Platform
 
 <div align="center">
-  <img src=".[/assets/neocore.svg](NEOCORE.png)" alt="NeoCore Platform" width="300"/>
+  <img src="./assets/neocore-logo.svg" alt="NeoCore Platform" width="300"/>
   
   > A modern, AI-powered backend development platform built with React, Express.js, and PostgreSQL
 </div>
